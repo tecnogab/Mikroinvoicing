@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<personas>
+ <persona sexo="masculino">
+  <nombre>Pepe</nombre>
+  <apellidos>Gracia Perez</apellidos>
+ </persona>
+ <persona sexo="femenino">
+  <nombre>Martha</nombre>
+  <apellidos>Suarez Martinez</apellidos>
+ </persona>
+</personas>
