@@ -93,7 +93,8 @@ public class MKIMainView extends JFrame {
 		btnSearchClients.setIcon(new ImageIcon(MKIMainView.class.getResource("/ar/com/jgt/icons_48x48/businesspeople_view.png")));
 		toolBar.add(btnSearchClients);
 		
-		btnNewButton = new JButton("New button");
+		btnNewButton = new JButton("");
+		btnNewButton.setIcon(new ImageIcon(MKIMainView.class.getResource("/ar/com/jgt/icons_48x48/businesspeople.png")));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ReadXML readXML = new ReadXML();
