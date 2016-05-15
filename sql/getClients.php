@@ -2,6 +2,6 @@
 	require_once "clientes.php"; 
 	$sql= "SELECT * FROM t_clients";	
 	$test = new Clientes();
-	echo $test->getArraySQL($sql);		
-		
+	//$test->insertClient("28050444", "Joselo", "Bilardon", "2016-05-14");
+	$test->getClients($sql);
 ?>
