@@ -8,7 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -41,8 +40,6 @@ public class AddClientView extends JInternalFrame {
 	private JTextField textLastName;
 	private JTextField textIP;
 	private JTextField textDNI;
-	
-	private JProgressBar progressBar;
 			
 	private JDateChooser dateChooser;
 	
@@ -145,10 +142,6 @@ public class AddClientView extends JInternalFrame {
 		textPhone.setBounds(115, 74, 289, 20);
 		panelContact.add(textPhone);
 		textPhone.setColumns(10);
-		
-		progressBar = new JProgressBar();
-		progressBar.setBounds(10, 124, 394, 14);
-		panelContact.add(progressBar);
 		
 		lblInfo = new JLabel("");
 		lblInfo.setBounds(10, 102, 394, 14);
