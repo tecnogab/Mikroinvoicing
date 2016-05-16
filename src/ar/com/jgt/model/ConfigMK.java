@@ -5,7 +5,7 @@ package ar.com.jgt.model;
  * 
  * @author gideon
  */
-public class Config {
+public class ConfigMK {
 
 	public static final String HOST = "172.24.11.254";
 	public static final String USERNAME = "admin";

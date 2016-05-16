@@ -24,7 +24,6 @@ import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
 
 import ar.com.jgt.model.AddClientModel;
-import ar.com.jgt.model.ReadXML;
 
 public class MKIMainView extends JFrame {
 
@@ -97,6 +96,7 @@ public class MKIMainView extends JFrame {
 		btnNewButton = new JButton("");
 		btnNewButton.setIcon(new ImageIcon(MKIMainView.class.getResource("/ar/com/jgt/icons_48x48/businesspeople.png")));
 		btnNewButton.addActionListener(new ActionListener() {
+			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
 				/*ReadXML readXML = new ReadXML();
 				readXML.metodo1();*/				
@@ -104,7 +104,7 @@ public class MKIMainView extends JFrame {
 				//readXML.guardaConFormato(l_docXML, System.getProperty("user.dir") + "/xml/new.xml");
 				
 				AddClientModel addClientModel = new AddClientModel();
-				addClientModel.sendPost("28050944", "Joselote", "Tejerina", "2016-05-15");
+				addClientModel.sendPost("31840032", "Nancy Nazarena", "Arenas", "1985-08-24 18:35:56");
 				
 				
 			}

@@ -11,8 +11,8 @@ abstract class ConnectMK {
 	protected ApiConnection m_conn;
 
 	protected void connect() throws Exception {
-		m_conn = ApiConnection.connect(Config.HOST, ApiConnection.DEFAULT_PORT, 2000);
-		m_conn.login(Config.USERNAME, Config.PASSWORD);
+		m_conn = ApiConnection.connect(ConfigMK.HOST, ApiConnection.DEFAULT_PORT, 2000);
+		m_conn.login(ConfigMK.USERNAME, ConfigMK.PASSWORD);
 	}
 
 	protected void disconnect() throws Exception {

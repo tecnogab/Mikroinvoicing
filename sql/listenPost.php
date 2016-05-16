@@ -13,6 +13,6 @@
     	//--Creamos un objeto de la clase usuarioClass
     	$cliente = new Clientes();
     	//Insertamos un nuevo usuario en la base de datos
-    	$cliente->insertClient($jsonencode[0]->nombre,$jsonencode[0]->apellidos,$jsonencode[0]->email);
+    	$cliente->insertClient($jsonencode[0]->dni, $jsonencode[0]->nombre, $jsonencode[0]->apellido, $jsonencode[0]->fecha_up);
 	}
 ?>

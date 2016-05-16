@@ -27,7 +27,7 @@ public class AddClientModel {
 	public static void sendPost(String p_dni, String p_nombre, String p_apellido, String p_fecha_up){
         //Creamos un objeto JSON
         JSONObject l_jsonObj = new JSONObject();
-        //Añadimos el nombre, apellidos y email del usuario
+        //Aï¿½adimos el nombre, apellidos y email del usuario
         l_jsonObj.put("dni", p_dni);
         l_jsonObj.put("nombre", p_nombre);
         l_jsonObj.put("apellido", p_apellido);
@@ -39,35 +39,40 @@ public class AddClientModel {
         
         //Generamos el String JSON
         String l_jsonString = JSONValue.toJSONString(l_list);
-        System.out.println("JSON GENERADO:");
-        System.out.println(l_jsonString);
-        System.out.println("");
- 
+        //System.out.println("JSON GENERADO:");
+        //System.out.println(l_jsonString);
         try {
             //Codificar el json a URL
             l_jsonString = URLEncoder.encode(l_jsonString, "UTF-8");
+            
             //Generar la URL
             String l_url = SERVER_PATH + "listenPost.php";
+            
             //Creamos un nuevo objeto URL con la url donde queremos enviar el JSON
             URL l_URLObj = new URL(l_url);
-            //Creamos un objeto de conexión
+            
+            //Creamos un objeto de conexiï¿½n
             HttpURLConnection l_con = (HttpURLConnection) l_URLObj.openConnection();
-            //Añadimos la cabecera
+            
+            //Aï¿½adimos la cabecera
             l_con.setRequestMethod("POST");
             l_con.setRequestProperty("User-Agent", USER_AGENT);
             l_con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+            
             //Creamos los parametros para enviar
             String l_urlParameters = "json=" + l_jsonString;
+            
             // Enviamos los datos por POST
             l_con.setDoOutput(true);
             DataOutputStream l_dos = new DataOutputStream(l_con.getOutputStream());
             l_dos.writeBytes(l_urlParameters);
             l_dos.flush();
             l_dos.close();
+            
             //Capturamos la respuesta del servidor
             int l_responseCode = l_con.getResponseCode();
-            System.out.println("\nSending 'POST' request to URL : " + l_url);
-            System.out.println("Post parameters : " + l_urlParameters);
+            //System.out.println("\nSending 'POST' request to URL : " + l_url);
+            //System.out.println("Post parameters : " + l_urlParameters);
             System.out.println("Response Code : " + l_responseCode);
  
             BufferedReader l_br = new BufferedReader(
@@ -80,7 +85,7 @@ public class AddClientModel {
             }
             //Mostramos la respuesta del servidor por consola
             System.out.println(l_SBResponse);
-            //cerramos la conexión
+            //cerramos la conexiï¿½n
             l_br.close();
         } catch (Exception p_exception) {
             p_exception.printStackTrace();
