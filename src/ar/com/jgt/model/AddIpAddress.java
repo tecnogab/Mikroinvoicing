@@ -9,21 +9,20 @@ import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
-public class AddClientModel {
+public class AddIpAddress {
 	
 	/**
      * @param args the command line arguments
      */
     private static final String USER_AGENT = "Mozilla/5.0";
-    private static final String SERVER_PATH = "http://seguidorgps.com/mki/clients/";
+    private static final String SERVER_PATH = "http://seguidorgps.com/mki/ips/";
     
-    
-
     @SuppressWarnings({ "unchecked", "rawtypes" })
-	public static void sendPost(String p_dni, String p_nombre, String p_apellido, String p_fecha_up){
+	public static void sendPostIdAddress(String p_dni, String p_nombre, String p_apellido, String p_fecha_up){
         //Creamos un objeto JSON
         JSONObject l_jsonObj = new JSONObject();
         //A�adimos el nombre, apellidos y email del usuario

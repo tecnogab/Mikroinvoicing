@@ -1,6 +1,6 @@
 <?php  
 
-require_once "conexion.php"; 
+require_once "../conn/conexion.php"; 
 
 class Clientes extends Conexion{     
 			
