@@ -23,6 +23,7 @@ import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
 
+import ar.com.jgt.model.AddClientModel;
 import ar.com.jgt.model.ReadXML;
 
 public class MKIMainView extends JFrame {
@@ -97,10 +98,15 @@ public class MKIMainView extends JFrame {
 		btnNewButton.setIcon(new ImageIcon(MKIMainView.class.getResource("/ar/com/jgt/icons_48x48/businesspeople.png")));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ReadXML readXML = new ReadXML();
-				readXML.metodo1();				
+				/*ReadXML readXML = new ReadXML();
+				readXML.metodo1();*/				
 				//Document l_docXML = readXML.crearXML();
 				//readXML.guardaConFormato(l_docXML, System.getProperty("user.dir") + "/xml/new.xml");
+				
+				AddClientModel addClientModel = new AddClientModel();
+				addClientModel.sendPost("28050944", "Joselote", "Tejerina", "2016-05-15");
+				
+				
 			}
 		});
 		toolBar.add(btnNewButton);
