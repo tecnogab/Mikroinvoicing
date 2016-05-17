@@ -42,6 +42,8 @@ class Clientes extends Conexion{
         if(!$consulta){
             echo "No se ha podido insertar el cliente en la base de datos<br><br>".mysqli_error($conn);
         }
+
+        printf (mysqli_insert_id($conn));
         $phpConn->disconnectDB($conn); //desconectamos la base de datos
         //devolvemos el resultado de la consulta (true o false)
         return $consulta;

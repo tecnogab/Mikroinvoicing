@@ -70,12 +70,11 @@ public class AddClientModel {
             
             //Capturamos la respuesta del servidor
             int l_responseCode = l_con.getResponseCode();
-            //System.out.println("\nSending 'POST' request to URL : " + l_url);
-            //System.out.println("Post parameters : " + l_urlParameters);
+            System.out.println("\nSending 'POST' request to URL : " + l_url);
+            System.out.println("Post parameters : " + l_urlParameters);
             System.out.println("Response Code : " + l_responseCode);
  
-            BufferedReader l_br = new BufferedReader(
-                    new InputStreamReader(l_con.getInputStream()));
+            BufferedReader l_br = new BufferedReader(new InputStreamReader(l_con.getInputStream()));
             String l_inputLine;
             StringBuffer l_SBResponse = new StringBuffer();
  
@@ -83,7 +82,9 @@ public class AddClientModel {
                 l_SBResponse.append(l_inputLine);
             }
             //Mostramos la respuesta del servidor por consola
-            System.out.println(l_SBResponse);
+            int id_client = Integer.parseInt(l_SBResponse.toString().replaceAll("\\s",""));
+            System.out.println(id_client);
+            //System.out.println(l_SBResponse);
             //cerramos la conexi�n
             l_br.close();
         } catch (Exception p_exception) {
