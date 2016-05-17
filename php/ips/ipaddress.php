@@ -2,6 +2,7 @@
 	require_once "../conn/conexion.php"; 
 	
 	class IpAddress extends Conexion{
+		
 		//inserta en la base de datos un nuevo registro en la tabla t_ips
 		function insertIp($ipv4, $ipv6, $id_client){
 		

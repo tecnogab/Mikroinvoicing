@@ -104,7 +104,7 @@ public class MKIMainView extends JFrame {
 				//readXML.guardaConFormato(l_docXML, System.getProperty("user.dir") + "/xml/new.xml");
 				
 				AddClientModel addClientModel = new AddClientModel();
-				addClientModel.sendPost("31840032", "Nancy Nazarena", "Arenas", "1985-08-24 18:35:56");
+				addClientModel.sendPost("28050944", "José Gabriel", "Tejerina", "1985-08-24 18:35:56");
 				
 				
 			}

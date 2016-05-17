@@ -21,6 +21,49 @@ public class AddIpAddress {
     private static final String USER_AGENT = "Mozilla/5.0";
     private static final String SERVER_PATH = "http://seguidorgps.com/mki/ips/";
     
+    
+    private static String getJSON(){
+        
+        StringBuffer l_response = null;
+        
+        try {
+            //Generar la URL
+            String l_url = SERVER_PATH + "getClients.php";
+            //Creamos un nuevo objeto URL con la url donde pedir el JSON
+            URL l_URLObj = new URL(l_url);
+            //Creamos un objeto de conexión
+            HttpURLConnection l_conn = (HttpURLConnection) l_URLObj.openConnection();
+            //Añadimos la cabecera
+            l_conn.setRequestMethod("POST");
+            l_conn.setRequestProperty("User-Agent", USER_AGENT);
+            l_conn.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+            // Enviamos la petición por POST
+            l_conn.setDoOutput(true);      
+
+            //Capturamos la respuesta del servidor
+            int l_responseCode = l_conn.getResponseCode();
+            System.out.println("\nSending 'POST' request to URL : " + l_url);
+            System.out.println("Response Code : " + l_responseCode);
+            
+            BufferedReader l_br = new BufferedReader(new InputStreamReader(l_conn.getInputStream()));
+            String l_inputLine;
+            l_response = new StringBuffer();
+ 
+            while ((l_inputLine = l_br.readLine()) != null) {
+                l_response.append(l_inputLine);
+            }
+            //Mostramos la respuesta del servidor por consola
+            System.out.println("Respuesta del servidor: " + l_response);
+            System.out.println();
+            //cerramos la conexión
+            l_br.close();
+        } catch (Exception p_exception) {
+            p_exception.printStackTrace();
+        }
+        
+        return l_response.toString();
+    }    
+    
     @SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void sendPostIdAddress(String p_dni, String p_nombre, String p_apellido, String p_fecha_up){
         //Creamos un objeto JSON
