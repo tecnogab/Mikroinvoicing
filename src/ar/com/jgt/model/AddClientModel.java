@@ -20,13 +20,12 @@ public class AddClientModel {
     private static final String USER_AGENT = "Mozilla/5.0";
     private static final String SERVER_PATH = "http://seguidorgps.com/mki/clients/";
     
-    
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-	public static void sendPost(String p_dni, String p_nombre, String p_apellido, String p_fecha_up){
+	public static int sendPost(String p_dni, String p_nombre, String p_apellido, String p_fecha_up){
         //Creamos un objeto JSON
         JSONObject l_jsonObj = new JSONObject();
-        //A�adimos el nombre, apellidos y email del usuario
+        //Añadimos dni, nombre, apellido y fecha de alta
         l_jsonObj.put("dni", p_dni);
         l_jsonObj.put("nombre", p_nombre);
         l_jsonObj.put("apellido", p_apellido);
@@ -40,6 +39,9 @@ public class AddClientModel {
         String l_jsonString = JSONValue.toJSONString(l_list);
         //System.out.println("JSON GENERADO:");
         //System.out.println(l_jsonString);
+        
+        int l_idClient = 0;
+        
         try {
             //Codificar el json a URL
             l_jsonString = URLEncoder.encode(l_jsonString, "UTF-8");
@@ -50,10 +52,10 @@ public class AddClientModel {
             //Creamos un nuevo objeto URL con la url donde queremos enviar el JSON
             URL l_URLObj = new URL(l_url);
             
-            //Creamos un objeto de conexi�n
+            //Creamos un objeto de conexión
             HttpURLConnection l_con = (HttpURLConnection) l_URLObj.openConnection();
             
-            //A�adimos la cabecera
+            //Añadimos la cabecera
             l_con.setRequestMethod("POST");
             l_con.setRequestProperty("User-Agent", USER_AGENT);
             l_con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
@@ -69,10 +71,10 @@ public class AddClientModel {
             l_dos.close();
             
             //Capturamos la respuesta del servidor
-            int l_responseCode = l_con.getResponseCode();
-            System.out.println("\nSending 'POST' request to URL : " + l_url);
-            System.out.println("Post parameters : " + l_urlParameters);
-            System.out.println("Response Code : " + l_responseCode);
+            //int l_responseCode = l_con.getResponseCode();
+            //System.out.println("\nSending 'POST' request to URL : " + l_url);
+            //System.out.println("Post parameters : " + l_urlParameters);
+            //System.out.println("Response Code : " + l_responseCode);
  
             BufferedReader l_br = new BufferedReader(new InputStreamReader(l_con.getInputStream()));
             String l_inputLine;
@@ -81,15 +83,17 @@ public class AddClientModel {
             while ((l_inputLine = l_br.readLine()) != null) {
                 l_SBResponse.append(l_inputLine);
             }
-            //Mostramos la respuesta del servidor por consola
-            int id_client = Integer.parseInt(l_SBResponse.toString().replaceAll("\\s",""));
-            System.out.println(id_client);
+            //Capturo el Id auto generedo
+            l_idClient = Integer.parseInt(l_SBResponse.toString().replaceAll("\\s",""));
+            //System.out.println(id_client);
             //System.out.println(l_SBResponse);
-            //cerramos la conexi�n
+            
+            //cerramos la conexión
             l_br.close();
         } catch (Exception p_exception) {
             p_exception.printStackTrace();
         }
+        return l_idClient ;
     }
 
 }

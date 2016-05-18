@@ -5,26 +5,19 @@
 		
 		//inserta en la base de datos un nuevo registro en la tabla t_ips
 		function insertIp($ipv4, $ipv6, $id_client){
-		
-			$ip = $_SERVER['REMOTE_ADDR']; // Esta información no es viable!
-			
-			if( preg_match( '^([0-9]{1,3}\.){3}([0-9]{1,3}){1}$', $ip ) )
-				$ipv4 = inet_pton( $ip );
-			else
-				$ipv6 = inet_pton( '::1' );
-		
+
 			$phpConn = new Conexion();
 			$conn = $phpConn->connectDB();
         
 			//Escribimos la sentencia sql necesaria respetando los tipos de datos
-			$sql = "INSERT INTO t_ips (iv4, ipv6, id_client) values ('".$ipv4."', '".$ipv6."','".$id_client."')";
+			$sql = "INSERT INTO t_ips (ipv4, ipv6, id_client) values ('".ip2long($ipv4)."', '".inet_pton($ipv6)."', '".$id_client."')";
         
 			//hacemos la consulta y la comprobamos 
 			$consulta = mysqli_query($conn, $sql);
 			if(!$consulta){
 				echo "No se ha podido insertar una nueva Medalla en la base de datos<br><br>".mysqli_error($conn);
 			}			
-			
+
 			$phpConn->disconnectDB($conn); //desconectamos la base de datos
 			//devolvemos el resultado de la consulta (true o false)
 			return $consulta;
