@@ -25,7 +25,7 @@ public class AddClientModel {
 	public static int sendPost(String p_dni, String p_nombre, String p_apellido, String p_fecha_up){
         //Creamos un objeto JSON
         JSONObject l_jsonObj = new JSONObject();
-        //Añadimos dni, nombre, apellido y fecha de alta
+        //A�adimos dni, nombre, apellido y fecha de alta
         l_jsonObj.put("dni", p_dni);
         l_jsonObj.put("nombre", p_nombre);
         l_jsonObj.put("apellido", p_apellido);
@@ -55,7 +55,7 @@ public class AddClientModel {
             //Creamos un objeto de conexión
             HttpURLConnection l_con = (HttpURLConnection) l_URLObj.openConnection();
             
-            //Añadimos la cabecera
+            //A�adimos la cabecera
             l_con.setRequestMethod("POST");
             l_con.setRequestProperty("User-Agent", USER_AGENT);
             l_con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
@@ -63,7 +63,7 @@ public class AddClientModel {
             //Creamos los parametros para enviar
             String l_urlParameters = "json=" + l_jsonString;
             
-            // Enviamos los datos por POST
+            //Enviamos los datos por POST
             l_con.setDoOutput(true);
             DataOutputStream l_dos = new DataOutputStream(l_con.getOutputStream());
             l_dos.writeBytes(l_urlParameters);
@@ -88,7 +88,7 @@ public class AddClientModel {
             //System.out.println(id_client);
             //System.out.println(l_SBResponse);
             
-            //cerramos la conexión
+            //cerramos la conexi�n
             l_br.close();
         } catch (Exception p_exception) {
             p_exception.printStackTrace();

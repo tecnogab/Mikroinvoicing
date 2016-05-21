@@ -2,8 +2,6 @@ package ar.com.jgt.view;
 
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
@@ -23,9 +21,6 @@ import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
 
-import ar.com.jgt.model.AddClientModel;
-import ar.com.jgt.model.AddIpModel;
-
 public class MKIMainView extends JFrame {
 
 	/**
@@ -44,7 +39,6 @@ public class MKIMainView extends JFrame {
 	private JMenu mnConfig;
 	private JRadioButtonMenuItem rdbServerMode;
 	private JRadioButtonMenuItem rdbClientMode;
-	private JButton btnNewButton;
 
 	/**
 	 * Create the frame.
@@ -93,26 +87,6 @@ public class MKIMainView extends JFrame {
 		btnSearchClients.setToolTipText("Clic aqu\u00ED para buscar clientes\u2026");
 		btnSearchClients.setIcon(new ImageIcon(MKIMainView.class.getResource("/ar/com/jgt/icons_48x48/businesspeople_view.png")));
 		toolBar.add(btnSearchClients);
-		
-		btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon(MKIMainView.class.getResource("/ar/com/jgt/icons_48x48/businesspeople.png")));
-		btnNewButton.addActionListener(new ActionListener() {
-			@SuppressWarnings("static-access")
-			public void actionPerformed(ActionEvent e) {
-				/*ReadXML readXML = new ReadXML();
-				readXML.metodo1();*/				
-				//Document l_docXML = readXML.crearXML();
-				//readXML.guardaConFormato(l_docXML, System.getProperty("user.dir") + "/xml/new.xml");
-				
-				AddClientModel addClientModel = new AddClientModel();
-				int id = addClientModel.sendPost("28050944", "José Gabriel", "Tejerina", "1985-08-24 18:35:56");
-				AddIpModel addIpModel = new AddIpModel();
-				addIpModel.sendPostIdAddress("172.24.12.2", "::1", id);
-				
-				
-			}
-		});
-		toolBar.add(btnNewButton);
 		
 		desktopPane = new JDesktopPane();
 		desktopPane.setBorder(new BackgroundImage());
