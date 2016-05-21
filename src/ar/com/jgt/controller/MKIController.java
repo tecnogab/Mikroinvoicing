@@ -7,6 +7,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 
+import ar.com.jgt.model.AddClientModel;
 import ar.com.jgt.model.MikroInvoicingModel;
 import ar.com.jgt.model.StartTcpServerForH2;
 import ar.com.jgt.view.AddClientView;
@@ -16,15 +17,15 @@ import ar.com.jgt.view.SearchClientView;
 public class MKIController implements ActionListener {
 
 	/**
-	 * Variable de cadenas constantes para hacer referencia a comandos de acción
+	 * Variable de cadenas constantes para hacer referencia a comandos de acciÃ³n
 	 */
 	private final static String SHOW_ADDCLIENTS_VIEW = "show_addclients_view";
 	private final static String SHOW_SEARCH_CLIENT_VIEW = "search_client_view";
 	private final static String START_SERVER_H2 = "start_server_h2";
 
-	private MKIMainView ui_view;
-	private MikroInvoicingModel m_model;
-	private ButtonGroup m_group;
+	private MKIMainView ui_view = null;
+	private MikroInvoicingModel m_model = null;
+	private ButtonGroup m_group = null;
 
 	/**
 	 * Main Builder
@@ -61,20 +62,21 @@ public class MKIController implements ActionListener {
 		/** Al cerrar la ventana principal se detiene el servidor H2DB */
 		windowClosing();
 
-		/** Añado al ButtonGroup los Radio Buttons del menu de configuración */
+		/** AÃ±ado al ButtonGroup los Radio Buttons del menu de configuraciÃ³n */
 		m_group.add(ui_view.getRdbClientMode());
 		m_group.add(ui_view.getRdbServerMode());
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent p_actionEvent) {
-		// TODO Se crea una instancia de AddClientView se muestra en dentro del
-		// DesktopPane
+		// TODO Se crea una instancia de AddClientView se muestra dentro de DesktopPane
 		if (p_actionEvent.getActionCommand().equals(SHOW_ADDCLIENTS_VIEW)) {
-			instanceControl(new AddClientView());
+			AddClientView acv = null;
+			AddClientModel acm = null;
+			AddClientController acc = new AddClientController(acv, acm);
+			instanceControl(acc.initialize());
 		}
-		// TODO Se crea una instancia de SearchClientView se muestra en dentro
-		// del DesktopPane
+		// TODO Se crea una instancia de SearchClientView se muestra dentro de DesktopPane
 		if (p_actionEvent.getActionCommand().equals(SHOW_SEARCH_CLIENT_VIEW)) {
 			instanceControl(new SearchClientView());
 		}
@@ -90,14 +92,14 @@ public class MKIController implements ActionListener {
 	}
 
 	/**
-	 * Método de control de manera que se crea una instancia única de una
+	 * MÃ©todo de control de manera que se crea una instancia Ãºnica de una
 	 * ventana interna
 	 */
 	private void instanceControl(JInternalFrame p_internalFrame) {
-		boolean l_viewFlag = true;
 		/**
 		 * Compruebe si existe una instancia de un componente en JDesktopPane
 		 */
+		boolean l_viewFlag = true;
 		for (int a = 0; a < ui_view.getDesktopPane().getComponentCount(); a++) {
 			if (p_internalFrame.getClass().isInstance(ui_view.getDesktopPane().getComponent(a))) {
 				p_internalFrame.toFront();

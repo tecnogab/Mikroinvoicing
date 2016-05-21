@@ -31,13 +31,13 @@ public class AddIpModel {
 			String l_url = SERVER_PATH + "getClients.php";
 			// Creamos un nuevo objeto URL con la url donde pedir el JSON
 			URL l_URLObj = new URL(l_url);
-			// Creamos un objeto de conexi髇
+			// Creamos un objeto de conexi贸n
 			HttpURLConnection l_conn = (HttpURLConnection) l_URLObj.openConnection();
 			// A帽adimos la cabecera
 			l_conn.setRequestMethod("POST");
 			l_conn.setRequestProperty("User-Agent", USER_AGENT);
 			l_conn.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
-			// Enviamos la petici髇 por POST
+			// Enviamos la petici贸n por POST
 			l_conn.setDoOutput(true);
 
 			// Capturamos la respuesta del servidor
@@ -68,7 +68,7 @@ public class AddIpModel {
 	public static void sendPostIdAddress(String p_ipv4, String p_ipv6, int p_idClient) {
 		// Creamos un objeto JSON
 		JSONObject l_jsonObj = new JSONObject();
-		// A馻do los n鷐eros de ip
+		// A帽ado los n煤meros de ip
 		l_jsonObj.put("ipv4", p_ipv4);
 		l_jsonObj.put("ipv6", p_ipv6);
 		l_jsonObj.put("id_client", p_idClient);
@@ -91,10 +91,10 @@ public class AddIpModel {
 			// Creamos un nuevo objeto URL con la url donde queremos enviar el JSON
 			URL l_URLObj = new URL(l_url);
 
-			// Creamos un objeto de conexi髇
+			// Creamos un objeto de conexi贸n
 			HttpURLConnection l_con = (HttpURLConnection) l_URLObj.openConnection();
 
-			// A馻dimos la cabecera
+			// A帽adimos la cabecera
 			l_con.setRequestMethod("POST");
 			l_con.setRequestProperty("User-Agent", USER_AGENT);
 			l_con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
@@ -124,7 +124,7 @@ public class AddIpModel {
 			}
 			// Mostramos la respuesta del servidor por consola
 			System.out.println(l_SBResponse);
-			// cerramos la conexi髇
+			// cerramos la conexi贸n
 			l_br.close();
 		} catch (Exception p_exception) {
 			p_exception.printStackTrace();

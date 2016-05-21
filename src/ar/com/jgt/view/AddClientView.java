@@ -52,7 +52,7 @@ public class AddClientView extends JInternalFrame {
 		setClosable(true);
 		setTitle("Add Clients");
 		setFrameIcon(new ImageIcon(AddClientView.class.getResource("/ar/com/jgt/icons_16x16/businesspeople.png")));		
-		setBounds(100, 100, 450, 430);
+		setBounds(100, 100, 450, 440);
 		
 		mainPanel = new JPanel();
 		getContentPane().add(mainPanel, BorderLayout.CENTER);
@@ -155,8 +155,80 @@ public class AddClientView extends JInternalFrame {
 		
 		btnSaveClient = new JButton("");
 		btnSaveClient.setIcon(new ImageIcon(AddClientView.class.getResource("/ar/com/jgt/icons_64x64/data_floppy_disk.png")));
-		btnSaveClient.setBounds(311, 299, 113, 91);
+		btnSaveClient.setBounds(307, 300, 113, 91);
 		mainPanel.add(btnSaveClient);
 				
+	}
+
+	public JTextField getTextNeighborhood() {
+		return textNeighborhood;
+	}
+
+	public void setTextNeighborhood(JTextField textNeighborhood) {
+		this.textNeighborhood = textNeighborhood;
+	}
+
+	public JTextField getTextStreet() {
+		return textStreet;
+	}
+
+	public void setTextStreet(JTextField textStreet) {
+		this.textStreet = textStreet;
+	}
+
+	public JTextField getTextPhone() {
+		return textPhone;
+	}
+
+	public void setTextPhone(JTextField textPhone) {
+		this.textPhone = textPhone;
+	}
+
+	public JTextField getTextName() {
+		return textName;
+	}
+
+	public void setTextName(JTextField textName) {
+		this.textName = textName;
+	}
+
+	public JTextField getTextLastName() {
+		return textLastName;
+	}
+
+	public void setTextLastName(JTextField textLastName) {
+		this.textLastName = textLastName;
+	}
+
+	public JTextField getTextIP() {
+		return textIP;
+	}
+
+	public void setTextIP(JTextField textIP) {
+		this.textIP = textIP;
+	}
+
+	public JTextField getTextDNI() {
+		return textDNI;
+	}
+
+	public void setTextDNI(JTextField textDNI) {
+		this.textDNI = textDNI;
+	}
+
+	public JDateChooser getDateChooser() {
+		return dateChooser;
+	}
+
+	public void setDateChooser(JDateChooser dateChooser) {
+		this.dateChooser = dateChooser;
+	}
+
+	public JButton getBtnSaveClient() {
+		return btnSaveClient;
+	}
+
+	public void setBtnSaveClient(JButton btnSaveClient) {
+		this.btnSaveClient = btnSaveClient;
 	}
 }
