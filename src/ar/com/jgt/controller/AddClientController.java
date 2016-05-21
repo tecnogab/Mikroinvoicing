@@ -35,7 +35,10 @@ public class AddClientController implements ActionListener{
 	public void actionPerformed(ActionEvent p_actionEvent) {
 		// TODO Auto-generated method stub
 		if (p_actionEvent.getActionCommand().equals(SEND_DATA_POST)) {
-			System.out.println(m_model.sendPost("28050944", "José", "Tejerina", "1981-05-07"));
+			System.out.println(m_model.sendPost(ui_view.getTextDNI().getText(), 
+					ui_view.getTextName().getText(), 
+					ui_view.getTextLastName().getText(), 
+					ui_view.getDateChooser().getDate().toString()));
 		}
 	}
 
