@@ -92,7 +92,7 @@ public class MKIController implements ActionListener {
 	}
 
 	/**
-	 * MÃ©todo de control de manera que se crea una instancia Ãºnica de una
+	 * Método de control de manera que se crea una instancia única de una
 	 * ventana interna
 	 */
 	private void instanceControl(JInternalFrame p_internalFrame) {

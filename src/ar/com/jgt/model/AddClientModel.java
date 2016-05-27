@@ -25,7 +25,7 @@ public class AddClientModel {
 	public int sendPost(String p_dni, String p_nombre, String p_apellido, String p_fecha_up){
         //Creamos un objeto JSON
         JSONObject l_jsonObj = new JSONObject();
-        //AÃ±adimos dni, nombre, apellido y fecha de alta
+        //Añadimos dni, nombre, apellido y fecha de alta
         l_jsonObj.put("dni", p_dni);
         l_jsonObj.put("nombre", p_nombre);
         l_jsonObj.put("apellido", p_apellido);
@@ -52,10 +52,10 @@ public class AddClientModel {
             //Creamos un nuevo objeto URL con la url donde queremos enviar el JSON
             URL l_URLObj = new URL(l_url);
             
-            //Creamos un objeto de conexiÃ³n
+            //Creamos un objeto de conexión
             HttpURLConnection l_con = (HttpURLConnection) l_URLObj.openConnection();
             
-            //AÃ±adimos la cabecera
+            //Añadimos la cabecera
             l_con.setRequestMethod("POST");
             l_con.setRequestProperty("User-Agent", USER_AGENT);
             l_con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
