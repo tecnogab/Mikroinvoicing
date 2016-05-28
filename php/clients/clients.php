@@ -10,7 +10,7 @@ class Clientes extends Conexion{
 		$phpConn = new Conexion();
 		$conn = $phpConn->connectDB();
 		//Consulta SQL
-		$sql = "SELECT id_cli FROM t_clients WHERE dni_cli = '$dni'";
+		$sql = "SELECT id_cli FROM t_clientes WHERE dni_cli = '$dni'";
 		
 		if(!$result = mysqli_query($conn, $sql)) 
 			die();			
@@ -35,7 +35,7 @@ class Clientes extends Conexion{
 		$conn = $phpConn->connectDB();
         
 		//Escribimos la sentencia sql necesaria respetando los tipos de datos
-    	$sql = "INSERT INTO t_clients (dni_cli, nombre_cli, apellido_cli, fecha_up_cli) values ('".$dni."', '".$nombre."','".$apellido."','".$fecha_up."')";
+    	$sql = "INSERT INTO t_clientes (dni_cli, nombre_cli, apellido_cli, fecha_up_cli) values ('".$dni."', '".$nombre."','".$apellido."','".$fecha_up."')";
         
 		//hacemos la consulta y la comprobamos 
         $consulta = mysqli_query($conn, $sql);

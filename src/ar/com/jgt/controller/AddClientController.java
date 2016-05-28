@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import javax.swing.JInternalFrame;
 
 import ar.com.jgt.model.AddClientModel;
+import ar.com.jgt.model.AddIpModel;
 import ar.com.jgt.view.AddClientView;
 
 public class AddClientController implements ActionListener {
@@ -37,8 +38,10 @@ public class AddClientController implements ActionListener {
 		// TODO Auto-generated method stub
 		if (p_actionEvent.getActionCommand().equals(SEND_DATA_POST)) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			System.out.println(m_model.sendPost(ui_view.getTextDNI().getText(), ui_view.getTextName().getText(),
-					ui_view.getTextLastName().getText(), sdf.format(ui_view.getDateChooser().getDate())));
+			int l_idCliente = m_model.sendPost(ui_view.getTextDNI().getText(), ui_view.getTextName().getText(),
+					ui_view.getTextLastName().getText(), sdf.format(ui_view.getDateChooser().getDate()));
+			AddIpModel addIpModel = new AddIpModel();
+			addIpModel.sendPostIdAddress(ui_view.getTextIP().getText(), "2002:450:9:10::71", l_idCliente);
 		}
 	}
 

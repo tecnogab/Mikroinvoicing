@@ -65,7 +65,7 @@ public class AddIpModel {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static void sendPostIdAddress(String p_ipv4, String p_ipv6, int p_idClient) {
+	public void sendPostIdAddress(String p_ipv4, String p_ipv6, int p_idClient) {
 		// Creamos un objeto JSON
 		JSONObject l_jsonObj = new JSONObject();
 		// Añado los números de ip
@@ -79,8 +79,8 @@ public class AddIpModel {
 
 		// Generamos el String JSON
 		String l_jsonString = JSONValue.toJSONString(l_list);
-		// System.out.println("JSON GENERADO:");
-		// System.out.println(l_jsonString);
+		/**System.out.println("JSON GENERADO:");
+		System.out.println(l_jsonString);*/
 		try {
 			// Codificar el json a URL
 			l_jsonString = URLEncoder.encode(l_jsonString, "UTF-8");
@@ -110,10 +110,10 @@ public class AddIpModel {
 			l_dos.close();
 
 			// Capturamos la respuesta del servidor
-			int l_responseCode = l_con.getResponseCode();
-			// System.out.println("\nSending 'POST' request to URL : " + l_url);
-			// System.out.println("Post parameters : " + l_urlParameters);
-			System.out.println("Response Code : " + l_responseCode);
+			/**int l_responseCode = l_con.getResponseCode();
+			System.out.println("\nSending 'POST' request to URL : " + l_url);
+			System.out.println("Post parameters : " + l_urlParameters);
+			System.out.println("Response Code : " + l_responseCode);*/
 
 			BufferedReader l_br = new BufferedReader(new InputStreamReader(l_con.getInputStream()));
 			String l_inputLine;
@@ -123,7 +123,7 @@ public class AddIpModel {
 				l_SBResponse.append(l_inputLine);
 			}
 			// Mostramos la respuesta del servidor por consola
-			System.out.println(l_SBResponse);
+			/**System.out.println(l_SBResponse);*/
 			// cerramos la conexión
 			l_br.close();
 		} catch (Exception p_exception) {
