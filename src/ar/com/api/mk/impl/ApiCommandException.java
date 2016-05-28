@@ -5,6 +5,8 @@ import ar.com.api.mk.MikrotikApiException;
 /**
  * Thrown when the Mikrotik returns an error when receiving our command.
  * @author GideonLeGrange
+ * 
+ * 
  */
 @SuppressWarnings("serial")
 public class ApiCommandException extends MikrotikApiException {

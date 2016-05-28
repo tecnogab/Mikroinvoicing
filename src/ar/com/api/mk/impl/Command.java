@@ -9,6 +9,8 @@ import java.util.List;
  * with parameters, queries and property lists.
  *
  * @author GideonLeGrange
+ * 
+ * 
  */
 class Command {
 

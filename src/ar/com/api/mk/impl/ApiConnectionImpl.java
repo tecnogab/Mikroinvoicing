@@ -28,6 +28,8 @@ import ar.com.api.mk.ResultListener;
  * to a remote Mikrotik and send commands to it.
  *
  * @author GideonLeGrange
+ * 
+ * 
  */
 public final class ApiConnectionImpl extends ApiConnection {
 

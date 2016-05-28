@@ -5,6 +5,8 @@ import ar.com.api.mk.MikrotikApiException;
 /**
  * Thrown if there is a problem unpacking data from the Api. 
  * @author GideonLeGrange
+ * 
+ * 
  */
 @SuppressWarnings("serial")
 public class ApiDataException extends MikrotikApiException {

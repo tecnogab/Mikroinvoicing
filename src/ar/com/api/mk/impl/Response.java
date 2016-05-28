@@ -4,6 +4,8 @@ package ar.com.api.mk.impl;
  * Super type of possible API responses
  *
  * @author GideonLeGrange
+ * 
+ * 
  */
 abstract class Response {
 

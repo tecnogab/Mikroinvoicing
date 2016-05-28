@@ -20,6 +20,8 @@ import static ar.com.api.mk.impl.Scanner.Token.*;
  * A simple scanner.
  *
  * @author gideon
+ * 
+ * 
  */
 class Scanner {
 

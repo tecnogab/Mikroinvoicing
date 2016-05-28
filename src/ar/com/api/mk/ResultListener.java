@@ -5,6 +5,8 @@ import java.util.Map;
 /**
  * Implement this interface to receive command results from the Mikrotik Api.
  * @author GideonLeGrange
+ * 
+ * 
  */
 public interface ResultListener {
     

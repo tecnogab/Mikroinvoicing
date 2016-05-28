@@ -15,6 +15,8 @@ import ar.com.api.mk.ApiConnectionException;
  * API.
  *
  * @author GideonLeGrange. Possibly some code by janisk left.
+ * 
+ * 
  */
 final class Util {
 

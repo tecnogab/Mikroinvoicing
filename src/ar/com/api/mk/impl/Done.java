@@ -3,6 +3,8 @@ package ar.com.api.mk.impl;
 /**
  * Internal representation of !done
  * @author GideonLeGrange
+ * 
+ * 
  */
 class Done extends Response {
 

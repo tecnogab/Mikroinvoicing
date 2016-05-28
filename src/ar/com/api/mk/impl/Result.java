@@ -8,6 +8,8 @@ import java.util.Set;
 /**
  * A result from an API command. 
  * @author GideonLeGrange
+ * 
+ * 
  */
 class Result extends Response implements Map<String, String> {
 

@@ -10,6 +10,8 @@ import ar.com.api.mk.impl.ApiConnectionImpl;
  * Mikrotik and send commands to it.
  *
  * @author GideonLeGrange
+ * 
+ * 
  */
 public abstract class ApiConnection implements AutoCloseable {
     
