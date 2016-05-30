@@ -9,8 +9,8 @@
 			$conn = $phpConn->connectDB();
         
 			//Escribimos la sentencia sql necesaria respetando los tipos de datos
-			$sql = "INSERT INTO t_domicilios (id_domicilio, barrio_dom, calle_dom, coordenadas_dom, id_cli) VALUES 
-				('".$barrio."', '".$calle."', GeomFromText(\'POINT(\'".$latitude."\' \'".$longitude."\')\',0), '".$id_cliente."');";
+			$sql = "INSERT INTO t_domicilios (barrio_dom, calle_dom, coordenadas_dom, id_cli) VALUES 
+				('".$barrio."', '".$calle."', GeomFromText('POINT($latitude $longitude),4'), '".$id_cliente."');";
         
 			//hacemos la consulta y la comprobamos 
 			$consulta = mysqli_query($conn, $sql);

@@ -15,6 +15,8 @@
 		echo "Pasamos por la consulta";
     	//Insertamos un nuevo usuario en la base de datos
     	//$domicilio->insertDom($jsonencode[0]->barrio, $jsonencode[0]->calle, $jsonencode[0]->latitude, $jsonencode[0]->longitude, $jsonencode[0]->id_cliente);
-		$domicilio->insertDom('Catedral', 'Lopez y Planes 996', '-23.136286', '-64.318122', 5);
+		//$domicilio->insertDom("Catedral", "Lopez y Planes 996", "-23.136286", "-64.318122", "5");
 	}
+	$domicilio = new Domicilios();
+	$domicilio->insertDom('Catedral', 'Lopez y Planes 996', '-23.136286', '-64.318122', 5);
 ?>
