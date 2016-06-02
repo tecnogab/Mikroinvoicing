@@ -22,10 +22,35 @@
 			//devolvemos el resultado de la consulta (true o false)
 			return $consulta;
 		}
-	}		
-?>
-<?PHP
-
-SELECT t_clientes.nombre_cli, t_domicilios.barrio_dom, t_domicilios.calle_dom, AsText(t_domicilios.coordenadas_dom) 
-FROM t_domicilios, t_clientes WHERE t_domicilios.id_cli = t_clientes.id_cli AND t_domicilios.id_cli = 3
+		
+		function getAllDom(){
+			
+			$phpConn = new Conexion();
+			$conn = $phpConn->connectDB();
+        
+			//Escribimos la sentencia sql necesaria respetando los tipos de datos
+			$sql = "SELECT * FROM t_domicilios";
+			// Ejecutar la consulta
+			$resultado = mysqli_query($conn, $sql);
+			
+			// Comprobar el resultado
+			// Lo siguiente muestra la consulta real enviada a MySQL, y el error ocurrido. Útil para depuración.
+			if (!$resultado) {
+				$mensaje  = 'Consulta no válida: ' . mysql_error() . "\n";
+				$mensaje .= 'Consulta completa: ' . $sql;
+				die($mensaje);
+			}			
+			$resultado->data_seek(0);			
+			while ($fila = $resultado->fetch_assoc()) {				
+				echo $fila['id_domicilio'];?> <br> <?PHP
+				echo $fila['barrio_dom']; ?> <br> <?PHP
+				echo $fila['calle_dom'];?> <br> <?PHP
+				echo $fila['coordenadas_dom'];?> <br> <?PHP
+				echo $fila['id_cli'];				
+			}
+			
+			$phpConn->disconnectDB($conn); //desconectamos la base de datos			
+			return $rawdata;
+		}
+	}
 ?>
