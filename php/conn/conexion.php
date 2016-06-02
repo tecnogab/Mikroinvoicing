@@ -3,9 +3,9 @@ require_once "config.php";
 class Conexion { 
 			
 	public function connectDB(){
-		$conexion = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-			if(mysqli_connect_errno()){
-				printf("Error de conexión: %s\n", mysqli_connect_error());
+		$conexion = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+			if($conexion->connect_errno){
+				echo "Fallo al conectar a MySQL: (" . $conexion->connect_errno . ") " . $conexion->connect_error;
     			exit();
 			}else{
 				return $conexion;

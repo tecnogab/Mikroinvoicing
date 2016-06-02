@@ -29,7 +29,7 @@
 			$conn = $phpConn->connectDB();
         
 			//Escribimos la sentencia sql necesaria respetando los tipos de datos
-			$sql = "SELECT * FROM t_domicilios";
+			$sql = "SELECT t_clientes.nombre_cli, t_domicilios.barrio_dom, t_domicilios.calle_dom, AsText(t_domicilios.coordenadas_dom), t_domicilios.id_cli FROM t_domicilios, t_clientes WHERE t_domicilios.id_cli = t_clientes.id_cli";
 			// Ejecutar la consulta
 			$resultado = mysqli_query($conn, $sql);
 			
@@ -40,17 +40,15 @@
 				$mensaje .= 'Consulta completa: ' . $sql;
 				die($mensaje);
 			}			
-			$resultado->data_seek(0);			
-			while ($fila = $resultado->fetch_assoc()) {				
-				echo $fila['id_domicilio'];?> <br> <?PHP
-				echo $fila['barrio_dom']; ?> <br> <?PHP
-				echo $fila['calle_dom'];?> <br> <?PHP
-				echo $fila['coordenadas_dom'];?> <br> <?PHP
-				echo $fila['id_cli'];				
-			}
+
+			$arreglo = array();
+			
+			while($row = mysqli_fetch_assoc($resultado)){
+        		$arreglo[] = $row;
+        	}
 			
 			$phpConn->disconnectDB($conn); //desconectamos la base de datos			
-			return $rawdata;
+			return $arreglo;
 		}
 	}
 ?>

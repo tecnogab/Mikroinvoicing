@@ -11,6 +11,6 @@
 	require_once("domicilios.php"); 	
 	//--Creamos un objeto de la clase domicilios
 	$domicilio = new Domicilios();
-    $data = $domicilio->getAllDom();	
-	echo json_encode($data);
+    $datos = $domicilio->getAllDom();	
+	echo json_encode($datos);
 ?>
