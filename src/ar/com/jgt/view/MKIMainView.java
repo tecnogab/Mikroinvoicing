@@ -2,8 +2,13 @@ package ar.com.jgt.view;
 
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -20,6 +25,16 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
+
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class MKIMainView extends JFrame {
 
@@ -87,6 +102,36 @@ public class MKIMainView extends JFrame {
 		btnSearchClients.setToolTipText("Clic aqu\u00ED para buscar clientes\u2026");
 		btnSearchClients.setIcon(new ImageIcon(MKIMainView.class.getResource("/ar/com/jgt/icons_48x48/businesspeople_view.png")));
 		toolBar.add(btnSearchClients);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// Compile jrxml file.
+			       try {
+					JasperReport jasperReport = JasperCompileManager.compileReport("D:\\in\\test.jrxml");
+					// Parameters for report
+				       Map<String, Object> parameters = new HashMap<String, Object>();
+				 
+				       // DataSource
+				       // This is simple example, no database.
+				       // then using empty datasource.
+				       JRDataSource dataSource = new JREmptyDataSource();
+				 
+				       JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,
+				               parameters, dataSource);
+				 
+				       JasperViewer viewer = new JasperViewer(jasperPrint);
+				       viewer.setVisible(true);
+				        
+				       System.out.println("Done!");
+					
+				} catch (JRException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		toolBar.add(btnNewButton);
 		
 		desktopPane = new JDesktopPane();
 		desktopPane.setBorder(new BackgroundImage());
