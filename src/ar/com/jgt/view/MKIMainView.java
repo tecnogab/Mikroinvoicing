@@ -1,13 +1,14 @@
 package ar.com.jgt.view;
 
 import java.awt.BorderLayout;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.GroupLayout;
@@ -30,7 +31,6 @@ import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -121,7 +121,19 @@ public class MKIMainView extends JFrame {
 				               parameters, dataSource);
 				 
 				       JasperViewer viewer = new JasperViewer(jasperPrint);
+//				       System.out.println(getToolkit().getImage(getClass().getResource("/ar/com/jgt/icons_48x48/businesspeople.png")));
+				       viewer.setIconImage(getToolkit().getImage(getClass().getResource("/ar/com/jgt/icons_48x48/businesspeople.png")));
+				       viewer.setTitle("Recibo oficial");
+				       //viewer.setDefaultLookAndFeelDecorated(true);
 				       viewer.setVisible(true);
+				       
+				    // Make sure the output directory exists.
+				       //File outDir = new File("D:/jasperoutput");
+				       //outDir.mkdirs();
+				 
+				       // Export to PDF.
+				       //JasperExportManager.exportReportToPdfFile(jasperPrint,
+				       //      "D:/jasperoutput/Report.pdf");
 				        
 				       System.out.println("Done!");
 					
