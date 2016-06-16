@@ -1,14 +1,12 @@
 package ar.com.jgt.view;
 
 import java.awt.BorderLayout;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.swing.GroupLayout;
@@ -108,9 +106,17 @@ public class MKIMainView extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				// Compile jrxml file.
 			       try {
-					JasperReport jasperReport = JasperCompileManager.compileReport("D:\\in\\test.jrxml");
+					JasperReport jasperReport = JasperCompileManager.compileReport("D:\\in\\recibos.jrxml");
 					// Parameters for report
+					
+					float suma_rec = 250;
+					int reci_num = 456587321;
 				       Map<String, Object> parameters = new HashMap<String, Object>();
+				       parameters.put("rec_num", reci_num);
+				       parameters.put("name_cli", "Pablo Fernandez");
+				       parameters.put("suma_str", "dos cientos cincuenta");
+				       parameters.put("concepto_rec", "Internet mes de junio");
+				       parameters.put("suma_rec", suma_rec);
 				 
 				       // DataSource
 				       // This is simple example, no database.
@@ -125,6 +131,7 @@ public class MKIMainView extends JFrame {
 				       viewer.setIconImage(getToolkit().getImage(getClass().getResource("/ar/com/jgt/icons_48x48/businesspeople.png")));
 				       viewer.setTitle("Recibo oficial");
 				       //viewer.setDefaultLookAndFeelDecorated(true);
+				       viewer.setDefaultCloseOperation(HIDE_ON_CLOSE);
 				       viewer.setVisible(true);
 				       
 				    // Make sure the output directory exists.
