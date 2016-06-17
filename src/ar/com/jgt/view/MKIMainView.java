@@ -1,14 +1,18 @@
 package ar.com.jgt.view;
 
 import java.awt.BorderLayout;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
@@ -111,12 +115,16 @@ public class MKIMainView extends JFrame {
 					
 					float suma_rec = 250;
 					int reci_num = 456587321;
+					File sourceimage = new File("d:\\in\\antenna.png");
+					Image image = ImageIO.read(sourceimage);
+					
 				       Map<String, Object> parameters = new HashMap<String, Object>();
 				       parameters.put("rec_num", reci_num);
-				       parameters.put("name_cli", "Pablo Fernandez");
-				       parameters.put("suma_str", "dos cientos cincuenta");
-				       parameters.put("concepto_rec", "Internet mes de junio");
+				       parameters.put("name_cli", "JOSÉ GABRIEL TEJERINA");
+				       parameters.put("suma_str", "DOSCIENTOS CIENCUENTA");
+				       parameters.put("concepto_rec", "ACCESO A INTERNET MES DE JUNIO DE 2016");
 				       parameters.put("suma_rec", suma_rec);
+				       parameters.put("qr_code", image);
 				 
 				       // DataSource
 				       // This is simple example, no database.
@@ -145,6 +153,9 @@ public class MKIMainView extends JFrame {
 				       System.out.println("Done!");
 					
 				} catch (JRException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
