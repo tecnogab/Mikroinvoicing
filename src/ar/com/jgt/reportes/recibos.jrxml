@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.0.0.final using JasperReports Library version 6.0.0  -->
-<!-- 2016-06-17T00:10:59 -->
+<!-- 2016-06-17T12:59:48 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="recibos" pageWidth="420" pageHeight="297" orientation="Landscape" columnWidth="380" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="55a1f8ec-c0d2-4e1f-b6af-62621864c9e5">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -20,6 +20,7 @@
 	</parameter>
 	<parameter name="suma_rec" class="java.lang.Float"/>
 	<parameter name="qr_code" class="java.awt.Image"/>
+	<parameter name="logo_param" class="java.awt.Image"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -42,7 +43,7 @@
 			</staticText>
 			<image>
 				<reportElement x="0" y="0" width="160" height="45" uuid="2203fad1-2f5c-4d3b-8c22-e7b149aba122"/>
-				<imageExpression><![CDATA["images/tecnogab.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{logo_param}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="0" y="46" width="70" height="14" uuid="4f2a616b-c7ea-4e0b-a1b9-caaa53c49c92"/>
@@ -187,7 +188,7 @@
 				<textFieldExpression><![CDATA["$   " + $P{suma_rec}]]></textFieldExpression>
 			</textField>
 			<image hAlign="Center">
-				<reportElement x="300" y="116" width="64" height="64" uuid="07f35e71-d385-446c-98e7-90c3c8bd6f30">
+				<reportElement x="299" y="100" width="80" height="80" uuid="07f35e71-d385-446c-98e7-90c3c8bd6f30">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="local_mesure_unitheight" value="pixel"/>
@@ -195,6 +196,17 @@
 				</reportElement>
 				<imageExpression><![CDATA[$P{qr_code}]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement x="140" y="166" width="138" height="14" uuid="247dc21f-7f8a-434d-83d0-4e4f67a57ad0">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Dotted"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[firma]]></text>
+			</staticText>
 		</band>
 	</detail>
 </jasperReport>

@@ -110,21 +110,27 @@ public class MKIMainView extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				// Compile jrxml file.
 			       try {
-					JasperReport jasperReport = JasperCompileManager.compileReport("D:\\in\\recibos.jrxml");
+					JasperReport jasperReport = JasperCompileManager.compileReport("c:\\reportes\\recibos.jrxml");
 					// Parameters for report
 					
 					float suma_rec = 250;
 					int reci_num = 456587321;
-					File sourceimage = new File("d:\\in\\antenna.png");
+					//File sourceimage = new File("c:\\reportes\\qr_code.jpg");
+					File sourceimage = new File(getClass().getResource("/ar/com/jgt/reportes/qr_code.jpg").getFile());
 					Image image = ImageIO.read(sourceimage);
+					
+					File logoimage = new File(getClass().getResource("/ar/com/jgt/images/tecnogab.png").getFile());
+					Image logo = ImageIO.read(logoimage);
 					
 				       Map<String, Object> parameters = new HashMap<String, Object>();
 				       parameters.put("rec_num", reci_num);
-				       parameters.put("name_cli", "JOSÉ GABRIEL TEJERINA");
+				       parameters.put("name_cli", "Nancy Nazarena Arenas");
 				       parameters.put("suma_str", "DOSCIENTOS CIENCUENTA");
 				       parameters.put("concepto_rec", "ACCESO A INTERNET MES DE JUNIO DE 2016");
 				       parameters.put("suma_rec", suma_rec);
 				       parameters.put("qr_code", image);
+				       parameters.put("logo_param", logo);
+				       
 				 
 				       // DataSource
 				       // This is simple example, no database.
