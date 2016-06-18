@@ -48,7 +48,7 @@ public class SearchClientView extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setTitle("Consulta de clientes");
-		setBounds(100, 100, 600, 400);
+		setBounds(100, 100, 788, 503);
 		
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
@@ -123,7 +123,25 @@ public class SearchClientView extends JInternalFrame {
 
 		DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
 
-		tableClients = new JTable(dtm);		
+		tableClients = new JTable(new DefaultTableModel(
+			new Object[][] {
+				{"Mary", "Campione", "Esquiar", null},
+				{"Lhucas", "Huml", "Patinar", null},
+				{"Kathya", "Walrath", "Escalar", null},
+				{"Marcus", "Andrews", "Correr", null},
+				{"Angela", "Lalth", "Nadar", null},
+			},
+			new String[] {
+				"Nombre", "Apellido", "Barrio", "Domicilio"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});		
 		scrollPane.setViewportView(tableClients);
 		
 		panel.setLayout(gl_panel);

@@ -9,8 +9,6 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
@@ -27,16 +25,10 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
+import javax.swing.SwingWorker;
 import javax.swing.border.EmptyBorder;
 
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JREmptyDataSource;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.view.JasperViewer;
+import ar.com.jgt.reportes.Reportes;
 
 public class MKIMainView extends JFrame {
 
@@ -64,7 +56,7 @@ public class MKIMainView extends JFrame {
 		setTitle("Mikroinvoicing");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MKIMainView.class.getResource("/ar/com/jgt/icons_128x128/antenna.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 820, 586);
+		setBounds(100, 100, 936, 659);
 		
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -107,63 +99,33 @@ public class MKIMainView extends JFrame {
 		
 		JButton btnNewButton = new JButton("New button");
 		btnNewButton.addActionListener(new ActionListener() {
+			@SuppressWarnings("rawtypes")
 			public void actionPerformed(ActionEvent arg0) {
-				// Compile jrxml file.
-			       try {
-					JasperReport jasperReport = JasperCompileManager.compileReport("c:\\reportes\\recibos.jrxml");
-					// Parameters for report
+								
+				try {
+					File l_sourceimage = new File(getClass().getResource("/ar/com/jgt/reportes/qr_code.jpg").getFile());
+					Image l_qrCode = ImageIO.read(l_sourceimage);
+					Integer l_numRecibo = 783213587;
+					String l_nameCli = "José Gabriel Tejerina";
+					String l_concepto = "Acceso a internet mes de Junio de 2016";
+					Float l_importe = 450f;
 					
-					float suma_rec = 250;
-					int reci_num = 456587321;
-					//File sourceimage = new File("c:\\reportes\\qr_code.jpg");
-					File sourceimage = new File(getClass().getResource("/ar/com/jgt/reportes/qr_code.jpg").getFile());
-					Image image = ImageIO.read(sourceimage);
-					
-					File logoimage = new File(getClass().getResource("/ar/com/jgt/images/tecnogab.png").getFile());
-					Image logo = ImageIO.read(logoimage);
-					
-				       Map<String, Object> parameters = new HashMap<String, Object>();
-				       parameters.put("rec_num", reci_num);
-				       parameters.put("name_cli", "Nancy Nazarena Arenas");
-				       parameters.put("suma_str", "DOSCIENTOS CIENCUENTA");
-				       parameters.put("concepto_rec", "ACCESO A INTERNET MES DE JUNIO DE 2016");
-				       parameters.put("suma_rec", suma_rec);
-				       parameters.put("qr_code", image);
-				       parameters.put("logo_param", logo);
-				       
-				 
-				       // DataSource
-				       // This is simple example, no database.
-				       // then using empty datasource.
-				       JRDataSource dataSource = new JREmptyDataSource();
-				 
-				       JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,
-				               parameters, dataSource);
-				 
-				       JasperViewer viewer = new JasperViewer(jasperPrint);
-//				       System.out.println(getToolkit().getImage(getClass().getResource("/ar/com/jgt/icons_48x48/businesspeople.png")));
-				       viewer.setIconImage(getToolkit().getImage(getClass().getResource("/ar/com/jgt/icons_48x48/businesspeople.png")));
-				       viewer.setTitle("Recibo oficial");
-				       //viewer.setDefaultLookAndFeelDecorated(true);
-				       viewer.setDefaultCloseOperation(HIDE_ON_CLOSE);
-				       viewer.setVisible(true);
-				       
-				    // Make sure the output directory exists.
-				       //File outDir = new File("D:/jasperoutput");
-				       //outDir.mkdirs();
-				 
-				       // Export to PDF.
-				       //JasperExportManager.exportReportToPdfFile(jasperPrint,
-				       //      "D:/jasperoutput/Report.pdf");
-				        
-				       System.out.println("Done!");
-					
-				} catch (JRException e) {
+					final SwingWorker worker = new SwingWorker(){
+
+						@Override
+						protected Object doInBackground() throws Exception {
+							// TODO Auto-generated method stub
+							Reportes l_reporte = new Reportes(l_numRecibo, l_nameCli, l_concepto, l_importe, l_qrCode);
+							l_reporte.setVisible(true);
+							return null;
+						}
+						
+					};
+					worker.execute();
+															
+				} catch (IOException p_IOException) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					p_IOException.printStackTrace();
 				}
 			}
 		});
