@@ -8,8 +8,6 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-import com.itextpdf.awt.geom.Dimension;
-
 import ar.com.jgt.tools.NumeroALetra;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JREmptyDataSource;
