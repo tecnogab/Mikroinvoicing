@@ -4,15 +4,15 @@ import java.awt.BorderLayout;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
-import javax.swing.ImageIcon;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.table.DefaultTableModel;
 
 public class SearchClientView extends JInternalFrame {
 
@@ -42,6 +42,8 @@ public class SearchClientView extends JInternalFrame {
 				{ "Kathya", "Walrath", "Escalar", new Integer(2), new Boolean(false) },
 				{ "Marcus", "Andrews", "Correr", new Integer(7), new Boolean(true) },
 				{ "Angela", "Lalth", "Nadar", new Integer(4), new Boolean(false) } };
+		
+		
 
 		setClosable(true);
 		setResizable(true);
@@ -123,25 +125,7 @@ public class SearchClientView extends JInternalFrame {
 
 		DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
 
-		tableClients = new JTable(new DefaultTableModel(
-			new Object[][] {
-				{"Mary", "Campione", "Esquiar", null},
-				{"Lhucas", "Huml", "Patinar", null},
-				{"Kathya", "Walrath", "Escalar", null},
-				{"Marcus", "Andrews", "Correr", null},
-				{"Angela", "Lalth", "Nadar", null},
-			},
-			new String[] {
-				"Nombre", "Apellido", "Barrio", "Domicilio"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});		
+		tableClients = new JTable(dtm);				
 		scrollPane.setViewportView(tableClients);
 		
 		panel.setLayout(gl_panel);

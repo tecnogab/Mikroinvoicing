@@ -8,7 +8,7 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-import ar.com.jgt.tools.NumeroLetra;
+import ar.com.jgt.tools.NumeroALetra;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
@@ -33,7 +33,7 @@ public class Reportes {
 		
 		Image l_logoImage = ImageIO.read(l_logoFile);
 		String l_importeStr = String.valueOf(p_importe);
-		NumeroLetra l_convert = new NumeroLetra();
+		NumeroALetra l_convert = new NumeroALetra();
 		
 		JasperReport l_jasperReport = JasperCompileManager.compileReport(l_report.getAbsolutePath());
 		Map<String, Object> l_parameters = new HashMap<String, Object>();

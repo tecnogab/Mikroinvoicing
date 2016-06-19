@@ -3,6 +3,7 @@ package ar.com.jgt.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JInternalFrame;
 
@@ -37,11 +38,22 @@ public class AddClientController implements ActionListener {
 	public void actionPerformed(ActionEvent p_actionEvent) {
 		// TODO Auto-generated method stub
 		if (p_actionEvent.getActionCommand().equals(SEND_DATA_POST)) {
+			
+			String l_dni = ui_view.getTextDNI().getText();
+			String l_nameCli = ui_view.getTextName().getText();
+			String l_lastNameCli = ui_view.getTextLastName().getText();
+			Date l_dateUp = ui_view.getDateChooser().getDate();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			int l_idCliente = m_model.sendPost(ui_view.getTextDNI().getText(), ui_view.getTextName().getText(),
-					ui_view.getTextLastName().getText(), sdf.format(ui_view.getDateChooser().getDate()));
+			String l_dateUpStr = sdf.format(l_dateUp);
+			String l_ipV4Address = ui_view.getTextIP().getText();
+			String l_ipV6Address = "2002:450:9:10::71";
+			
 			AddIpModel addIpModel = new AddIpModel();
-			addIpModel.sendPostIdAddress(ui_view.getTextIP().getText(), "2002:450:9:10::71", l_idCliente);
+			
+			int l_idCliente = m_model.sendPost(l_dni, l_nameCli, l_lastNameCli, l_dateUpStr);						
+			addIpModel.sendPostIdAddress(l_ipV4Address, l_ipV6Address, l_idCliente);
+			
+			
 		}
 	}
 

@@ -1,4 +1,4 @@
-package ar.com.jgt.model;
+package ar.com.jgt.tools;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
