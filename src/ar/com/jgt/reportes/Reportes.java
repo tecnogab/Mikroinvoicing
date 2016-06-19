@@ -8,6 +8,8 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
+import com.itextpdf.awt.geom.Dimension;
+
 import ar.com.jgt.tools.NumeroALetra;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JREmptyDataSource;
@@ -53,6 +55,10 @@ public class Reportes {
 
 	public void setVisible(boolean p_flag){
 		ui_viewer = new JasperViewer(m_jasperPrint, false);
+		ui_viewer.setSize(new java.awt.Dimension(640, 520));
+		ui_viewer.setLocationByPlatform(true);
+		ui_viewer.setAlwaysOnTop(true);
+		ui_viewer.setTitle("TECNOGAB - RECIBO OFICIAL");
 		if (p_flag) {			
 			ui_viewer.setVisible(true);
 		}else{
