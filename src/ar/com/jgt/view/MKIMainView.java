@@ -98,19 +98,18 @@ public class MKIMainView extends JFrame {
 		toolBar.add(btnSearchClients);
 		
 		JButton btnNewButton = new JButton("New button");
-		btnNewButton.addActionListener(new ActionListener() {
-			@SuppressWarnings("rawtypes")
+		btnNewButton.addActionListener(new ActionListener() {			
 			public void actionPerformed(ActionEvent arg0) {
-								
+				
 				try {
-					File l_sourceimage = new File(getClass().getResource("/ar/com/jgt/reportes/qr_code.jpg").getFile());
+					File l_sourceimage = new File(this.getClass().getResource("/ar/com/jgt/reportes/qr_code.jpg").getFile());
 					Image l_qrCode = ImageIO.read(l_sourceimage);
 					Integer l_numRecibo = 783213587;
 					String l_nameCli = "José Gabriel Tejerina";
 					String l_concepto = "Acceso a internet mes de Junio de 2016";
 					Float l_importe = 450f;
 					
-					final SwingWorker worker = new SwingWorker(){
+					final SwingWorker<Object, Object> worker = new SwingWorker<Object, Object>(){
 
 						@Override
 						protected Object doInBackground() throws Exception {
