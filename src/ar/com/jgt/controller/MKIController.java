@@ -19,8 +19,8 @@ public class MKIController implements ActionListener {
 	/**
 	 * Variable de cadenas constantes para hacer referencia a comandos de acciÃ³n
 	 */
-	private final static String SHOW_ADDCLIENTS_VIEW = "show_addclients_view";
-	private final static String SHOW_SEARCH_CLIENT_VIEW = "search_client_view";
+	private final static String SHOW_ADDCLIENTS = "show_addclients";
+	private final static String SHOW_SEARCH_CLIENT = "search_client";
 	private final static String START_SERVER_H2 = "start_server_h2";
 
 	private MKIMainView ui_view = null;
@@ -48,39 +48,42 @@ public class MKIController implements ActionListener {
 		m_group = new ButtonGroup();
 
 		/**
-		 * Seteo de acciones para MKIMainView
+		 * Seteo de acciones y comandos de MKIMainView
 		 */
 		ui_view.setVisible(true);
 		ui_view.setLocationRelativeTo(null);
 		ui_view.getBtnAddClient().addActionListener(this);
-		ui_view.getBtnAddClient().setActionCommand("show_addclients_view");
+		ui_view.getBtnAddClient().setActionCommand("show_addclients");
 		ui_view.getBtnSearchClients().addActionListener(this);
-		ui_view.getBtnSearchClients().setActionCommand("search_client_view");
+		ui_view.getBtnSearchClients().setActionCommand("search_client");
 		ui_view.getRdbServerMode().addActionListener(this);
 		ui_view.getRdbServerMode().setActionCommand("start_server_h2");
 
 		/** Al cerrar la ventana principal se detiene el servidor H2DB */
 		windowClosing();
 
-		/** AÃ±ado al ButtonGroup los Radio Buttons del menu de configuraciÃ³n */
+		/** Añado al buttonGroup los radio buttons del menu de configuración */
 		m_group.add(ui_view.getRdbClientMode());
 		m_group.add(ui_view.getRdbServerMode());
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent p_actionEvent) {
-		// TODO Se crea una instancia de AddClientView se muestra dentro de DesktopPane
-		if (p_actionEvent.getActionCommand().equals(SHOW_ADDCLIENTS_VIEW)) {
-			AddClientView acv = null;
-			AddClientModel acm = null;
-			AddClientController acc = new AddClientController(acv, acm);
-			instanceControl(acc.initialize());
+		
+		/**Comando, evento para mostrar la ventana AddClient*/
+		if (p_actionEvent.getActionCommand().equals(SHOW_ADDCLIENTS)) {
+			AddClientView l_ACV = new AddClientView();
+			AddClientModel l_ACM = new AddClientModel();						
+			instanceControl(l_ACV);
+			AddClientController l_ACC = new AddClientController(l_ACV, l_ACM);
+			l_ACC.inicialize();
 		}
-		// TODO Se crea una instancia de SearchClientView se muestra dentro de DesktopPane
-		if (p_actionEvent.getActionCommand().equals(SHOW_SEARCH_CLIENT_VIEW)) {
+		
+		/**Comando, evento para mostrar la ventana SearchClientView*/
+		if (p_actionEvent.getActionCommand().equals(SHOW_SEARCH_CLIENT)) {
 			instanceControl(new SearchClientView());
 		}
-		// TODO START_SERVER_H2
+		/**Comando, evento para arrancar el servidor H2*/
 		if (p_actionEvent.getActionCommand().equals(START_SERVER_H2)) {
 			if (ui_view.getRdbServerMode().isSelected()) {
 				StartTcpServerForH2.start();
@@ -90,9 +93,9 @@ public class MKIController implements ActionListener {
 		}
 
 	}
-
+	
 	/**
-	 * Método de control de manera que se crea una instancia única de una
+	 * Método que controla la manera en que se crea una instancia única de una
 	 * ventana interna
 	 */
 	private void instanceControl(JInternalFrame p_internalFrame) {
@@ -109,11 +112,11 @@ public class MKIController implements ActionListener {
 				// System.out.println("No lo es, puede mostrarse");
 			}
 		}
-
+	
 		if (l_viewFlag) {
 			ui_view.getDesktopPane().add(p_internalFrame);
 		}
-		p_internalFrame.show();
+		p_internalFrame.setVisible(true);
 	}
 
 	/**

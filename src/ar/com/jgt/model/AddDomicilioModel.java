@@ -13,7 +13,7 @@ import java.util.List;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
-public class AddIpModel {
+public class AddDomicilioModel {
 
 	/**
 	 * @param args
@@ -22,13 +22,13 @@ public class AddIpModel {
 	private static final String USER_AGENT = "Mozilla/5.0";
 	private static final String SERVER_PATH = "http://seguidorgps.com/mki/ips/";
 
-	public static String getJSON() {
+	public static String getDomJSON() {
 
 		StringBuffer l_response = null;
 
 		try {
 			// Generar la URL
-			String l_url = SERVER_PATH + "getClients.php";
+			String l_url = SERVER_PATH + "getDomicilios.php";
 			// Creamos un nuevo objeto URL con la url donde pedir el JSON
 			URL l_URLObj = new URL(l_url);
 			// Creamos un objeto de conexión
@@ -65,13 +65,13 @@ public class AddIpModel {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void sendPostIdAddress(String p_ipv4, String p_ipv6, int p_idClient) {
+	public void sendPostDomicilios(String p_barrio, String p_calle, int p_telefono) {
 		// Creamos un objeto JSON
 		JSONObject l_jsonObj = new JSONObject();
 		// Añado los números de ip
-		l_jsonObj.put("ipv4", p_ipv4);
-		l_jsonObj.put("ipv6", p_ipv6);
-		l_jsonObj.put("id_client", p_idClient);
+		l_jsonObj.put("ipv4", p_barrio);
+		l_jsonObj.put("ipv6", p_calle);
+		l_jsonObj.put("id_client", p_telefono);
 
 		// Creamos una lista para almacenar el JSON
 		List l_list = new LinkedList();
@@ -79,8 +79,10 @@ public class AddIpModel {
 
 		// Generamos el String JSON
 		String l_jsonString = JSONValue.toJSONString(l_list);
-		/**System.out.println("JSON GENERADO:");
-		System.out.println(l_jsonString);*/
+		/**
+		 * System.out.println("JSON GENERADO:");
+		 * System.out.println(l_jsonString);
+		 */
 		try {
 			// Codificar el json a URL
 			l_jsonString = URLEncoder.encode(l_jsonString, "UTF-8");
@@ -88,7 +90,8 @@ public class AddIpModel {
 			// Generar la URL
 			String l_url = SERVER_PATH + "listenPostAddIp.php";
 
-			// Creamos un nuevo objeto URL con la url donde queremos enviar el JSON
+			// Creamos un nuevo objeto URL con la url donde queremos enviar el
+			// JSON
 			URL l_URLObj = new URL(l_url);
 
 			// Creamos un objeto de conexión
@@ -110,10 +113,12 @@ public class AddIpModel {
 			l_dos.close();
 
 			// Capturamos la respuesta del servidor
-			/**int l_responseCode = l_con.getResponseCode();
-			System.out.println("\nSending 'POST' request to URL : " + l_url);
-			System.out.println("Post parameters : " + l_urlParameters);
-			System.out.println("Response Code : " + l_responseCode);*/
+			/**
+			 * int l_responseCode = l_con.getResponseCode(); System.out.println(
+			 * "\nSending 'POST' request to URL : " + l_url);
+			 * System.out.println("Post parameters : " + l_urlParameters);
+			 * System.out.println("Response Code : " + l_responseCode);
+			 */
 
 			BufferedReader l_br = new BufferedReader(new InputStreamReader(l_con.getInputStream()));
 			String l_inputLine;
@@ -123,7 +128,7 @@ public class AddIpModel {
 				l_SBResponse.append(l_inputLine);
 			}
 			// Mostramos la respuesta del servidor por consola
-			/**System.out.println(l_SBResponse);*/
+			/** System.out.println(l_SBResponse); */
 			// cerramos la conexión
 			l_br.close();
 		} catch (Exception p_exception) {
