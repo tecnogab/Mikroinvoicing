@@ -26,6 +26,32 @@ class Clientes extends Conexion{
 		$json_string = json_encode($id_cliente);
 		echo $json_string;
 	}
+	
+	function getAllClients(){
+		
+		$phpConn = new Conexion();
+		$conn = $phpConn->connectDB();
+		//Consulta SQL
+		$sql = "SELECT * FROM t_clientes";
+		
+		if(!$result = mysqli_query($conn, $sql)) 
+			die();			
+		
+		$rawdata = array();
+        //guardamos en un array multidimensional todos los datos de la consulta
+        $i=0;
+        while($row = mysqli_fetch_array($result)){   
+			//guardamos en rawdata todos los vectores/filas que nos devuelve la consulta
+            $rawdata[$i] = $row;
+            $i++;
+        }	
+					
+		$phpConn->disconnectDB($conn); //desconectamos la base de datos		
+		
+		//Creamos el JSON
+		$json_string = json_encode($rawdata);
+		echo $json_string;
+	}
 
 
 	//inserta en la base de datos un nuevo registro en la tabla usuarios
