@@ -231,4 +231,12 @@ public class AddClientView extends JInternalFrame {
 	public void setBtnSaveClient(JButton btnSaveClient) {
 		this.btnSaveClient = btnSaveClient;
 	}
+
+	public JLabel getLblImageClient() {
+		return lblImageClient;
+	}
+
+	public void setLblImageClient(JLabel lblImageClient) {
+		this.lblImageClient = lblImageClient;
+	}
 }

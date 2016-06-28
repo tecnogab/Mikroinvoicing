@@ -38,13 +38,14 @@ class Clientes extends Conexion{
 			die();			
 		
 		$rawdata = array();
+		$rawdata = mysqli_fetch_array($result);
         //guardamos en un array multidimensional todos los datos de la consulta
-        $i=0;
-        while($row = mysqli_fetch_array($result)){   
+        //$i=0;
+        //while($row = mysqli_fetch_array($result)){   
 			//guardamos en rawdata todos los vectores/filas que nos devuelve la consulta
-            $rawdata[$i] = $row;
-            $i++;
-        }	
+        //    $rawdata[$i] = $row;
+        //    $i++;
+        //}	
 					
 		$phpConn->disconnectDB($conn); //desconectamos la base de datos		
 		
