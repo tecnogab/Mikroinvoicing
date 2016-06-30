@@ -1,16 +1,22 @@
-package ar.com.jgt.dao;
+package ar.com.jgt.dto;
 
-public class Cliente {
+public class ClienteDTO {
 	
-	String dni = "";
-	String nombre = "";
-	String apellido = "";
-	String fechaDeAlta = "";
+	private String dni = "";
+	private String nombre = "";
+	private String apellido = "";
+	private String fechaDeAlta = "";
 	
-	public Cliente(){
+	public ClienteDTO(){
 	}
 	
-	public Cliente(String dni, String nombre, String apellido, String fechaDeAlta){
+	public ClienteDTO(String dni) {
+		super();
+		this.dni = dni;
+	}
+	
+	public ClienteDTO(String dni, String nombre, String apellido, String fechaDeAlta) {
+		super();
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellido = apellido;

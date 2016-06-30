@@ -20,26 +20,33 @@ public class AddClientModel {
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
 	public int sendPost(String p_dni, String p_nombre, String p_apellido, String p_fecha_up){
-        JSONObject l_jsonObj = new JSONObject();	        									//Creamos un objeto JSON
+        
+    	JSONObject l_jsonObj = new JSONObject();	        									//Creamos un objeto JSON
         l_jsonObj.put("dni", p_dni);															//Añadimos dni, nombre, apellido y fecha de alta
         l_jsonObj.put("nombre", p_nombre);
         l_jsonObj.put("apellido", p_apellido);
         l_jsonObj.put("fecha_up", p_fecha_up);
-        List  l_list = new LinkedList();												        //Creamos una lista para almacenar el JSON
+        List l_list = new LinkedList();												        //Creamos una lista para almacenar el JSON
         l_list.addAll(Arrays.asList(l_jsonObj));
         String l_jsonString = JSONValue.toJSONString(l_list);									//Generamos el String JSON
+        
         //System.out.println("JSON GENERADO:");
         //System.out.println(l_jsonString);        
         int l_idClient = 0;
         
         try {
-            l_jsonString = URLEncoder.encode(l_jsonString, "UTF-8");							//Codificar el json a URL            
+            
+        	
+        	l_jsonString = URLEncoder.encode(l_jsonString, "UTF-8");							//Codificar el json a URL            
             String l_url = SERVER_PATH + "listenPostAddClient.php";            					//Generar la URL
             URL l_URLObj = new URL(l_url);														//Creamos un nuevo objeto URL con la url donde queremos enviar el JSON            
             HttpURLConnection l_con = (HttpURLConnection) l_URLObj.openConnection();			//Creamos un objeto de conexión            
             l_con.setRequestMethod("POST");														//Añadimos la cabecera
             l_con.setRequestProperty("User-Agent", USER_AGENT);
-            l_con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");            
+            l_con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");  
+            
+            
+            
             String l_urlParameters = "json=" + l_jsonString;            						//Creamos los parametros para enviar            
             l_con.setDoOutput(true);															//Enviamos los datos por POST
             DataOutputStream l_dos = new DataOutputStream(l_con.getOutputStream());

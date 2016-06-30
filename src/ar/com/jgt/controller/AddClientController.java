@@ -8,16 +8,16 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.SwingWorker;
 
-import ar.com.jgt.dao.Cliente;
-import ar.com.jgt.dao.IpAddress;
+import ar.com.jgt.dto.ClienteDTO;
+import ar.com.jgt.dto.IpAddressDTO;
 import ar.com.jgt.model.AddClientModel;
 import ar.com.jgt.model.AddIpModel;
 import ar.com.jgt.view.AddClientView;
 
 public class AddClientController implements ActionListener {
 
-	Cliente cliente = new Cliente();
-	IpAddress ipAddress = new IpAddress();
+	ClienteDTO cliente = new ClienteDTO();
+	IpAddressDTO ipAddress = new IpAddressDTO();
 	
 	/**
 	 * Variable de cadenas constantes para referenciar comandos de acción*/

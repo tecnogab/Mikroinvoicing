@@ -1,13 +1,13 @@
-package ar.com.jgt.dao;
+package ar.com.jgt.dto;
 
-public class IpAddress {
+public class IpAddressDTO {
 	
 	String ipv4 = "";
 	String ipv6 = "";
 	
-	public IpAddress(){		
+	public IpAddressDTO(){		
 	}
-	public IpAddress(String ipv4, String ipv6){
+	public IpAddressDTO(String ipv4, String ipv6){
 		this.ipv4 = ipv4;
 		this.ipv6 = ipv6;
 	}
