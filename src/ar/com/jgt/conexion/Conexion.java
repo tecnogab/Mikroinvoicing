@@ -15,34 +15,29 @@ public class Conexion {
 	
 	private Conexion(String p_url){
 		URL URLObj;		
-		try {						
-			
+		try {									
 			URLObj = new URL(SERVER_PATH + p_url);
 			httpURLconn = (HttpURLConnection) URLObj.openConnection();
-			httpURLconn.setRequestMethod("POST");														//Añadimos la cabecera
+			httpURLconn.setRequestMethod("POST");														
 			httpURLconn.setRequestProperty("User-Agent", USER_AGENT);
 			httpURLconn.setRequestProperty("Accept-Language", "en-US,en;q=0.5");			
-			
+			httpURLconn.setDoOutput(true);
 		} catch (MalformedURLException p_MalformedURLException) {
 			p_MalformedURLException.printStackTrace();
 		} catch (IOException p_IOException) {			
 			p_IOException.printStackTrace();
 		}
-	}
-	
-	public synchronized static Conexion conectar(String p_url){											//Patron singleton
+	}	
+	public synchronized static Conexion conectar(String p_url){											
 		if (instance == null) {
 			instance = new Conexion(p_url);
 		}
 		return instance;
 	}
-
 	public HttpURLConnection getHttpURLconn() {		
 		return httpURLconn;
-	}
-	
+	}	
 	public void cerrarConexion(){
 		instance = null;
-	}
-	
+	}	
 }
