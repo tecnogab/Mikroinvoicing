@@ -11,7 +11,8 @@ import ar.com.jgt.dto.ClienteDTO;
 import ar.com.jgt.interfaces.Grabable;
 
 public class ClienteDAO implements Grabable<ClienteDTO> {	
-		
+
+	private final Conexion conn = Conexion.conectar("listenPostAddClient.php");
 	private ClienteJSON clienteJSON = null;
 	private DataOutputStream dos = null;
 	private BufferedReader br = null;
@@ -20,8 +21,7 @@ public class ClienteDAO implements Grabable<ClienteDTO> {
 	private int l_idClient = 0;
 	
 	@Override
-	public int create(ClienteDTO p_cliente) {		
-		final Conexion conn = Conexion.conectar("listenPostAddClient.php");
+	public int create(ClienteDTO p_cliente) {				
 		clienteJSON = new ClienteJSON();																					
 		try {
 			dos = new DataOutputStream(conn.getHttpURLconn().getOutputStream());

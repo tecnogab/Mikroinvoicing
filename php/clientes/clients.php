@@ -74,5 +74,14 @@ class Clientes extends Conexion{
         $phpConn->disconnectDB($conn); //desconectamos la base de datos
         //devolvemos el resultado de la consulta (true o false)
         return $consulta;
-    }	
+    }
+	
+	function borrarCliente($dni){
+		$phpConn = new Conexion();
+		$conn = $phpConn->connectDB();        				
+		$sth = $conn->prepare("DELETE FROM t_clientes WHERE dni_cli=?");
+		$sth->bindParam(1, $dni);        
+		$sth->execute();		
+        $phpConn->disconnectDB($conn); //desconectamos la base de datos        
+	}
 }
