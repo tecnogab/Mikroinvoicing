@@ -17,9 +17,10 @@ public class ClienteDAO implements Grabable<ClienteDTO> {
 	private BufferedReader br = null;
 	private StringBuffer l_SBResponse = null;
 	private String inputLine = "";
+	private int l_idClient = 0;
 	
 	@Override
-	public boolean create(ClienteDTO p_cliente) {		
+	public int create(ClienteDTO p_cliente) {		
 		final Conexion conn = Conexion.conectar("listenPostAddClient.php");
 		clienteJSON = new ClienteJSON();																					
 		try {
@@ -33,12 +34,13 @@ public class ClienteDAO implements Grabable<ClienteDTO> {
 				l_SBResponse.append(inputLine);
 			}		
 			br.close();
+			l_idClient = Integer.parseInt(l_SBResponse.toString().replaceAll("\\s",""));		//Capturo el Id auto generedo
 		} catch (IOException p_IOException) {
 			p_IOException.printStackTrace();
 		}finally {
 			conn.cerrarConexion();
 		}		 																										
-		return false;
+		return l_idClient;
 	}
 
 	@Override

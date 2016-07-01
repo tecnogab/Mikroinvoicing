@@ -16,7 +16,7 @@ import ar.com.jgt.view.AddClientView;
 
 public class AddClientController implements ActionListener {
 
-	ClienteDTO cliente = new ClienteDTO();
+	ClienteDTO cliente = null;
 	IpAddressDTO ipAddress = new IpAddressDTO();
 	
 	/**
@@ -69,12 +69,13 @@ public class AddClientController implements ActionListener {
 	}
 	
 	private void setClient(){
-		cliente.setDni(ui_view.getTextDNI().getText());										//Obtengo el DNI que el usuario ingresa en la vista y lo guardo en una variable del Tipo String
-		cliente.setNombre(ui_view.getTextName().getText());									//Obtengo el Nombre que el usuario ingresa en la vista y lo guardo en una variable del Tipo String
-		cliente.setApellido(ui_view.getTextLastName().getText());							//Obtengo el Apellido que el usuario ingresa en la vista y lo guardo en una variable del Tipo String
 		Date date = ui_view.getDateChooser().getDate(); 									//Obtengo la fecha de alta que el usuario ingresa en la vista y lo guardo en una variable del Tipo Date
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");					//Instancia de la clase SimpleDateFormat para dar el formato correcto a la fecha que se desea guardar en la base de datos
-		cliente.setFechaDeAlta(sdf.format(date));											//String con formato "yyyy-MM-dd HH:mm:ss"
+		cliente = new ClienteDTO(
+				ui_view.getTextDNI().getText(), 
+				ui_view.getTextName().getText(), 
+				ui_view.getTextLastName().getText(), 
+				sdf.format(date));
 	}
 	
 	private void setIpAddress(){

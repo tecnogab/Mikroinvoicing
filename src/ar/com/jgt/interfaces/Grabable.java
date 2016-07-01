@@ -4,13 +4,11 @@ import java.util.List;
 
 public interface Grabable<Datos> {
 	/**
-	 * Metodo a ser implementado para insertar datos, recibe como parametros los
-	 * datos que se desean insertar en una tabla
-	 * 
-	 * @return boolean indicando si fue exitosa la entrada de datos
-	 * @param conjunto de datos correspondiente a los atributos de las tablas
+	 * Metodo a ser implementado para insertar datos
+	 * @param Datos tipo de dato generico, ejemplo ClienteDTO
+	 * @return entero, ejemplo: ultimo id insertado en la tabla
 	 */
-	public boolean create(Datos p_datos);
+	public int create(Datos p_datos);
 
 	/**
 	 * Metodo a ser implementado para borrar datos, recibe como parametro un
