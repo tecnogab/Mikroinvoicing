@@ -78,10 +78,12 @@ class Clientes extends Conexion{
 	
 	function borrarCliente($dni){
 		$phpConn = new Conexion();
-		$conn = $phpConn->connectDB();        				
-		$sth = $conn->prepare("DELETE FROM t_clientes WHERE dni_cli=?");
-		$sth->bindParam(1, $dni);        
-		$sth->execute();		
-        $phpConn->disconnectDB($conn); //desconectamos la base de datos        
+		$conn = $phpConn->connectDB();        		
+		$stmt = mysqli_prepare($conn, "DELETE FROM t_clientes WHERE dni_cli = ?");
+		mysqli_stmt_bind_param($stmt, 's', $dni);								
+		mysqli_stmt_execute($stmt);														//ejecuta sentencias preparadas		
+		printf("%d Filas borradas.\n", mysqli_stmt_affected_rows($stmt));		
+		mysqli_stmt_close($stmt);														//cierra sentencia y conexión		
+		$phpConn->disconnectDB($conn); 													//desconectamos la base de datos        
 	}
 }
