@@ -28,6 +28,8 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingWorker;
 import javax.swing.border.EmptyBorder;
 
+import ar.com.jgt.dao.ClienteDAO;
+import ar.com.jgt.dto.ClienteDTO;
 import ar.com.jgt.reportes.Reportes;
 
 public class MKIMainView extends JFrame {
@@ -129,6 +131,19 @@ public class MKIMainView extends JFrame {
 			}
 		});
 		toolBar.add(btnNewButton);
+		
+		JButton btnTest = new JButton("Test");
+		btnTest.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ClienteDTO dto = new ClienteDTO("28050944", "José gabriel", "Tejerina", "1981-05-07");
+				//ClienteJSON test = new ClienteJSON();
+				//test.createJSON(dto);
+				ClienteDAO dao = new ClienteDAO();
+				dao.create(dto);
+				
+			}
+		});
+		toolBar.add(btnTest);
 		
 		desktopPane = new JDesktopPane();
 		desktopPane.setBorder(new BackgroundImage());

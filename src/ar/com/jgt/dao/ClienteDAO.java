@@ -16,9 +16,9 @@ public class ClienteDAO implements Grabable<ClienteDTO> {
 	private ClienteJSON clienteJSON = null;
 	private DataOutputStream dos = null;
 	private BufferedReader br = null;
-	private StringBuffer l_SBResponse = null;
-	private String inputLine = "";
-	private int l_idClient = 0;
+	private StringBuffer brResponse = null;
+	private String strInputLine = "";
+	private int idClient = 0;
 	
 	@Override
 	public int create(ClienteDTO p_cliente) {				
@@ -29,18 +29,18 @@ public class ClienteDAO implements Grabable<ClienteDTO> {
 			dos.flush();
 			dos.close();			
 			br = new BufferedReader(new InputStreamReader(conn.getHttpURLconn().getInputStream()));			
-			l_SBResponse = new StringBuffer();
-			while ((inputLine = br.readLine()) != null) {
-				l_SBResponse.append(inputLine);
+			brResponse = new StringBuffer();
+			while ((strInputLine = br.readLine()) != null) {
+				brResponse.append(strInputLine);
 			}		
 			br.close();
-			l_idClient = Integer.parseInt(l_SBResponse.toString().replaceAll("\\s",""));		//Capturo el Id auto generedo
+			idClient = Integer.parseInt(brResponse.toString().replaceAll("\\s",""));		//Capturo el Id auto generedo
 		} catch (IOException p_IOException) {
 			p_IOException.printStackTrace();
 		}finally {
 			conn.cerrarConexion();
 		}		 																										
-		return l_idClient;
+		return idClient;
 	}
 
 	@Override
