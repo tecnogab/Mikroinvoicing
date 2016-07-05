@@ -1,5 +1,5 @@
 <?php
-	require_once("clients.php"); 
+	require_once("clients.php");
 	
 	//Comprobamos si hemos recibido alguna llamada por POST
 	if(isset($_POST["json"])){
