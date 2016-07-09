@@ -107,9 +107,9 @@ public class MKIMainView extends JFrame {
 					File l_sourceimage = new File(this.getClass().getResource("/ar/com/jgt/reportes/qr_code.jpg").getFile());
 					Image l_qrCode = ImageIO.read(l_sourceimage);
 					Integer l_numRecibo = 1632;
-					String l_nameCli = "Emilia Belluccini";
-					String l_concepto = "Acceso a internet meses de Junio y Julio de 2016";
-					Float l_importe = 500.0f;
+					String l_nameCli = "Montes Micaela - (DUPLICADO)";
+					String l_concepto = "Acceso a internet mes de julio 2016";
+					Float l_importe = 250.0f;
 					
 					final SwingWorker<Object, Object> worker = new SwingWorker<Object, Object>(){
 
