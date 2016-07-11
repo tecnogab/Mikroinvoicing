@@ -1,22 +1,19 @@
 package ar.com.jgt.view;
 
 import java.awt.BorderLayout;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -25,12 +22,10 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
-import javax.swing.SwingWorker;
 import javax.swing.border.EmptyBorder;
 
 import ar.com.jgt.dao.ClienteDAO;
 import ar.com.jgt.dto.ClienteDTO;
-import ar.com.jgt.reportes.Reportes;
 
 public class MKIMainView extends JFrame {
 
@@ -50,6 +45,7 @@ public class MKIMainView extends JFrame {
 	private JMenu mnConfig;
 	private JRadioButtonMenuItem rdbServerMode;
 	private JRadioButtonMenuItem rdbClientMode;
+	private JButton btnCallTempRecibo;
 
 	/**
 	 * Create the frame.
@@ -99,38 +95,14 @@ public class MKIMainView extends JFrame {
 		btnSearchClients.setIcon(new ImageIcon(MKIMainView.class.getResource("/ar/com/jgt/icons_48x48/businesspeople_view.png")));
 		toolBar.add(btnSearchClients);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.addActionListener(new ActionListener() {			
+		btnCallTempRecibo = new JButton("");
+		btnCallTempRecibo.setIcon(new ImageIcon(MKIMainView.class.getResource("/ar/com/jgt/icons_48x48/loader_48x48.gif")));
+		btnCallTempRecibo.addActionListener(new ActionListener() {			
 			public void actionPerformed(ActionEvent arg0) {
-				
-				try {
-					File l_sourceimage = new File(this.getClass().getResource("/ar/com/jgt/reportes/qr_code.jpg").getFile());
-					Image l_qrCode = ImageIO.read(l_sourceimage);
-					Integer l_numRecibo = 1632;
-					String l_nameCli = "Montes Micaela - (DUPLICADO)";
-					String l_concepto = "Acceso a internet mes de julio 2016";
-					Float l_importe = 250.0f;
-					
-					final SwingWorker<Object, Object> worker = new SwingWorker<Object, Object>(){
-
-						@Override
-						protected Object doInBackground() throws Exception {
-							// TODO Auto-generated method stub
-							Reportes l_reporte = new Reportes(l_numRecibo, l_nameCli, l_concepto, l_importe, l_qrCode);
-							l_reporte.setVisible(true);
-							return null;
-						}
-						
-					};
-					worker.execute();
-															
-				} catch (IOException p_IOException) {
-					// TODO Auto-generated catch block
-					p_IOException.printStackTrace();
-				}
+				instanceControl(new RecibosTemporales());
 			}
 		});
-		toolBar.add(btnNewButton);
+		toolBar.add(btnCallTempRecibo);
 		
 		JButton btnTest = new JButton("Test");
 		btnTest.addActionListener(new ActionListener() {
@@ -214,5 +186,30 @@ public class MKIMainView extends JFrame {
 
 	public void setRdbClientMode(JRadioButtonMenuItem p_rdbClientMode) {
 		this.rdbClientMode = p_rdbClientMode;
+	}
+	
+	/**
+	 * Método que controla la manera en que se crea una instancia única de una
+	 * ventana interna
+	 */
+	private void instanceControl(JInternalFrame p_internalFrame) {
+		/**
+		 * Compruebe si existe una instancia de un componente en JDesktopPane
+		 */
+		boolean l_viewFlag = true;
+		for (int a = 0; a < getDesktopPane().getComponentCount(); a++) {
+			if (p_internalFrame.getClass().isInstance(getDesktopPane().getComponent(a))) {
+				p_internalFrame.toFront();
+				getDesktopPane().moveToFront(p_internalFrame);
+				l_viewFlag = false;
+			} else {
+				// System.out.println("No lo es, puede mostrarse");
+			}
+		}
+	
+		if (l_viewFlag) {
+			getDesktopPane().add(p_internalFrame);
+		}
+		p_internalFrame.setVisible(true);
 	}
 }
