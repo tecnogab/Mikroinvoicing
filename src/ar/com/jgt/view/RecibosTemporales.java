@@ -58,16 +58,16 @@ public class RecibosTemporales extends JInternalFrame {
 				try {
 					File l_sourceimage = new File(this.getClass().getResource("/ar/com/jgt/reportes/qr_code.jpg").getFile());
 					Image l_qrCode = ImageIO.read(l_sourceimage);
-					Integer l_numRecibo = 1632;
+					Integer l_numRecibo = 163225;
 					String l_nameCli = textField.getText();					
-					String l_concepto = "Acceso a internet mes de julio 2016";
+					String l_concepto = "ACCESO INTERNET JULIO 2016";
 					Float l_importe = Float.parseFloat(comboBox.getSelectedItem().toString());
 					
 					final SwingWorker<Object, Object> worker = new SwingWorker<Object, Object>(){
 
 						@Override
 						protected Object doInBackground() throws Exception {
-							// TODO Auto-generated method stub
+							//TODO Auto-generated method stub
 							Reportes l_reporte = new Reportes(l_numRecibo, l_nameCli, l_concepto, l_importe, l_qrCode);
 							l_reporte.setVisible(true);							
 							btnCallReport.setEnabled(false);
