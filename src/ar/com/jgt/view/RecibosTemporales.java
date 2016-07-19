@@ -60,7 +60,7 @@ public class RecibosTemporales extends JInternalFrame {
 					Image l_qrCode = ImageIO.read(l_sourceimage);
 					Integer l_numRecibo = 163225;
 					String l_nameCli = textField.getText();					
-					String l_concepto = "ACCESO INTERNET JULIO 2016";
+					String l_concepto = "ACCESO A INTERNET JULIO 2016";
 					Float l_importe = Float.parseFloat(comboBox.getSelectedItem().toString());
 					
 					final SwingWorker<Object, Object> worker = new SwingWorker<Object, Object>(){

@@ -34,7 +34,7 @@ public class ClienteDAO implements Grabable<ClienteDTO> {
 				brResponse.append(strInputLine);
 			}		
 			br.close();
-			idClient = Integer.parseInt(brResponse.toString().replaceAll("\\s",""));		//Capturo el Id auto generedo
+			//idClient = Integer.parseInt(brResponse.toString().replaceAll("\\s",""));		//Capturo el Id auto generedo			
 		} catch (IOException p_IOException) {
 			p_IOException.printStackTrace();
 		}finally {
