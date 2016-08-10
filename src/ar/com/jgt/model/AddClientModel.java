@@ -69,7 +69,7 @@ public class AddClientModel {
             /**
              * System.out.println(id_client);
              * System.out.println(l_SBResponse);
-             * */
+             * */                                    
             
             l_br.close();            															//cerramos la conexión
         } catch (Exception p_exception) {

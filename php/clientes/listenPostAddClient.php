@@ -10,9 +10,9 @@
     	$jsonencode = json_decode($json);
 
     	//--Creamos un objeto de la clase usuarioClass
-    	$cliente = new Clientes();
+    	$cliente = new Cliente();
     	//Insertamos un nuevo usuario en la base de datos
-    	$cliente->insertClient($jsonencode[0]->dni, $jsonencode[0]->nombre, $jsonencode[0]->apellido, $jsonencode[0]->fecha_up);
+    	$cliente->insertCli($jsonencode[0]->dni, $jsonencode[0]->nombre, $jsonencode[0]->apellido, $jsonencode[0]->fecha_up);
 	}else 
 		if(isset($_POST["jsondelete"])){
 			$json = $_POST["jsondelete"];
