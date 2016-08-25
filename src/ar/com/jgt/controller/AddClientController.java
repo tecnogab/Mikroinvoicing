@@ -16,21 +16,15 @@ import ar.com.jgt.view.AddClientView;
 
 public class AddClientController implements ActionListener {
 
-	ClienteDTO cliente = null;
-	IpAddressDTO ipAddress = new IpAddressDTO();
+	private ClienteDTO cliente = null;
+	private IpAddressDTO ipAddress = new IpAddressDTO();
 	
-	/**
-	 * Variable de cadenas constantes para referenciar comandos de acción*/
-	private final static String SEND_DATA_POST = "send_data_post";
-	
-	/**
-	 * Declaro las variables objetos de la vista y el modelo*/
+	private final static String SEND_DATA_POST = "send_data_post";					//Variable de cadenas constantes para referenciar comandos de acción		
 	private AddClientView ui_view = null;
 	private AddClientModel m_model = null;
 
-	/**
-	 * Constructor con argumentos que recibe como parametros una VISTA y un MODELO*/
-	public AddClientController(AddClientView p_view, AddClientModel p_model) {
+	
+	public AddClientController(AddClientView p_view, AddClientModel p_model) {		//Constructor con argumentos que recibe como parametros una VISTA y un MODELO
 		ui_view = p_view;
 		m_model = p_model;		
 	}
@@ -40,9 +34,9 @@ public class AddClientController implements ActionListener {
 		ui_view.getBtnSaveClient().addActionListener(this);		
 	}
 
-	/**Metodo heredado de ActionListener para disparar los eventos que llegan de la vista*/
+
 	@Override
-	public void actionPerformed(ActionEvent p_actionEvent) {		
+	public void actionPerformed(ActionEvent p_actionEvent) {						//Metodo heredado de ActionListener para disparar los eventos que llegan de la vista		
 		if (p_actionEvent.getActionCommand().equals(SEND_DATA_POST)) {	
 			saveClient();
 		}
@@ -92,6 +86,5 @@ public class AddClientController implements ActionListener {
 			ui_view.getBtnSaveClient().setEnabled(false);
 			ui_view.getLblImageClient().setIcon(new ImageIcon(AddClientView.class.getResource("/ar/com/jgt/icons_128x128/Loading128x128.gif")));
 		}
-	}
-	
+	}	
 }

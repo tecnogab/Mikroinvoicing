@@ -58,7 +58,7 @@ public class RecibosTemporales extends JInternalFrame {
 				try {
 					File l_sourceimage = new File(this.getClass().getResource("/ar/com/jgt/reportes/qr_code.jpg").getFile());
 					Image l_qrCode = ImageIO.read(l_sourceimage);
-					Integer l_numRecibo = 168236;
+					Integer l_numRecibo = 16824;
 					String l_nameCli = textField.getText();					
 					String l_concepto = "ACCESO A INTERNET AGOSTO 2016";
 					Float l_importe = Float.parseFloat(comboBox.getSelectedItem().toString());
