@@ -42,26 +42,6 @@ public class AddClientController implements ActionListener {
 		}
 	}
 	
-	private void saveClient(){
-		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
-			@Override
-			protected Void doInBackground() throws Exception {		
-				setClient();
-				setIpAddress();
-				setBtnState(false);
-				AddIpModel addIpModel = new AddIpModel();																								//Instancia de la clase AddIpModel utilizada para guardar las IP en el server			
-				int l_idCliente = m_model.sendPost(cliente.getDni(), cliente.getNombre(), cliente.getApellido(), cliente.getFechaDeAlta());				//El metodo sendPost de AddClientModel devuelve un entero con el ultimo ID ingresado en la BD			
-				addIpModel.sendPostIdAddress(ipAddress.getIpv4(), ipAddress.getIpv6(), l_idCliente);													//El metodo sendPostIdAddress AddIpModel es utilisado para guardar las IPV4, IPV6 y el ID que relaciona las IP con el cliente
-				return null;
-			}
-			@Override
-			protected void done(){
-				setBtnState(true);
-			}				
-		};
-		worker.execute();
-	}
-	
 	private void setClient(){
 		Date date = ui_view.getDateChooser().getDate(); 									//Obtengo la fecha de alta que el usuario ingresa en la vista y lo guardo en una variable del Tipo Date
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");					//Instancia de la clase SimpleDateFormat para dar el formato correcto a la fecha que se desea guardar en la base de datos
@@ -86,5 +66,25 @@ public class AddClientController implements ActionListener {
 			ui_view.getBtnSaveClient().setEnabled(false);
 			ui_view.getLblImageClient().setIcon(new ImageIcon(AddClientView.class.getResource("/ar/com/jgt/icons_128x128/Loading128x128.gif")));
 		}
+	}
+	
+	private void saveClient(){
+		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
+			@Override
+			protected Void doInBackground() throws Exception {		
+				setClient();
+				setIpAddress();
+				setBtnState(false);
+				AddIpModel addIpModel = new AddIpModel();																								//Instancia de la clase AddIpModel utilizada para guardar las IP en el server			
+				int l_idCliente = m_model.sendPost(cliente.getDni(), cliente.getNombre(), cliente.getApellido(), cliente.getFechaDeAlta());				//El metodo sendPost de AddClientModel devuelve un entero con el ultimo ID ingresado en la BD			
+				addIpModel.sendPostIdAddress(ipAddress.getIpv4(), ipAddress.getIpv6(), l_idCliente);													//El metodo sendPostIdAddress AddIpModel es utilisado para guardar las IPV4, IPV6 y el ID que relaciona las IP con el cliente
+				return null;
+			}
+			@Override
+			protected void done(){
+				setBtnState(true);
+			}				
+		};
+		worker.execute();
 	}	
 }

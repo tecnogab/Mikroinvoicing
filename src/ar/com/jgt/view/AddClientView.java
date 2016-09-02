@@ -50,7 +50,7 @@ public class AddClientView extends JInternalFrame {
 	 */
 	public AddClientView() {
 		setClosable(true);
-		setTitle("Add Clients");
+		setTitle("Alta de clientes");
 		setFrameIcon(new ImageIcon(AddClientView.class.getResource("/ar/com/jgt/icons_16x16/businesspeople.png")));		
 		setBounds(100, 100, 450, 440);
 		
