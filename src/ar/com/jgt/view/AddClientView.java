@@ -15,9 +15,16 @@ import javax.swing.border.TitledBorder;
 
 import com.toedter.calendar.JDateChooser;
 
+import ar.com.jgt.controller.AddClientComboController;
+
+import javax.swing.JComboBox;
+
 public class AddClientView extends JInternalFrame {
 
 	private static final long serialVersionUID = -2159577181814466659L;
+	
+	private static final String[] ESTACIONES_BASE = {"Lopéz y Planes", "Torre Pizarro"};
+	private final String[] PANELES_LPLANES = {"Norte", "Sur", "Este", "Oeste"};
 	
 	private JPanel mainPanel;
 	private JPanel panelContact;
@@ -28,10 +35,8 @@ public class AddClientView extends JInternalFrame {
 	private JLabel lblStreet;
 	private JLabel lblNeighborhood;
 	private JLabel lblPhone;
-	private JLabel lblInfo;
 	private JLabel lblFechaDeAlta;
 	private JLabel lblIp;
-	private JLabel lblImageClient;
 	
 	private JTextField textNeighborhood;
 	private JTextField textStreet;
@@ -42,17 +47,25 @@ public class AddClientView extends JInternalFrame {
 	private JTextField textDNI;
 			
 	private JDateChooser dateChooser;
-	
-	private JButton btnSaveClient;
+	@SuppressWarnings("rawtypes")
+	private JComboBox cbBase;
+	private JLabel lblBase;
+	private JLabel lblPanel;
+	@SuppressWarnings("rawtypes")
+	private JComboBox cbPanel;
+	private JButton btnNewButton;
+	private JLabel lblSmsServer;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public AddClientView() {
 		setClosable(true);
 		setTitle("Alta de clientes");
 		setFrameIcon(new ImageIcon(AddClientView.class.getResource("/ar/com/jgt/icons_16x16/businesspeople.png")));		
-		setBounds(100, 100, 450, 440);
+		setBounds(100, 100, 375, 430);
 		
 		mainPanel = new JPanel();
 		getContentPane().add(mainPanel, BorderLayout.CENTER);
@@ -84,41 +97,41 @@ public class AddClientView extends JInternalFrame {
 		mainPanel.add(lblIp);
 		
 		textDNI = new JTextField();
-		textDNI.setBounds(110, 11, 135, 20);
+		textDNI.setBounds(110, 11, 239, 20);
 		mainPanel.add(textDNI);
 		textDNI.setColumns(10);
 		
 		textName = new JTextField();
 		textName.setColumns(10);
-		textName.setBounds(110, 36, 135, 20);
+		textName.setBounds(110, 36, 239, 20);
 		mainPanel.add(textName);
 		
 		textLastName = new JTextField();
 		textLastName.setColumns(10);
-		textLastName.setBounds(110, 61, 135, 20);
+		textLastName.setBounds(110, 61, 239, 20);
 		mainPanel.add(textLastName);
 		
 		dateChooser = new JDateChooser();
-		dateChooser.setBounds(110, 86, 135, 20);
+		dateChooser.setBounds(110, 86, 239, 20);
 		mainPanel.add(dateChooser);
 		
 		textIP = new JTextField();
-		textIP.setBounds(110, 111, 135, 20);
+		textIP.setBounds(110, 111, 239, 20);
 		mainPanel.add(textIP);
 		textIP.setColumns(10);
 		
 		panelContact = new JPanel();
 		panelContact.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Inf. de Contacto", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
-		panelContact.setBounds(10, 139, 414, 149);
+		panelContact.setBounds(10, 192, 339, 115);
 		mainPanel.add(panelContact);
 		panelContact.setLayout(null);
 		
-		lblNeighborhood = new JLabel("Barrio:");
+		lblNeighborhood = new JLabel("Domicilio/Calle:");
 		lblNeighborhood.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNeighborhood.setBounds(10, 27, 95, 14);
 		panelContact.add(lblNeighborhood);
 		
-		lblStreet = new JLabel("Domicilio/Calle:");
+		lblStreet = new JLabel("Barrio/Edificio/Piso");
 		lblStreet.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblStreet.setBounds(10, 52, 95, 14);
 		panelContact.add(lblStreet);				
@@ -129,34 +142,52 @@ public class AddClientView extends JInternalFrame {
 		panelContact.add(lblPhone);
 		
 		textNeighborhood = new JTextField();
-		textNeighborhood.setBounds(115, 24, 289, 20);
+		textNeighborhood.setBounds(115, 24, 214, 20);
 		panelContact.add(textNeighborhood);
 		textNeighborhood.setColumns(10);
 		
 		textStreet = new JTextField();
-		textStreet.setBounds(115, 49, 289, 20);
+		textStreet.setBounds(115, 49, 214, 20);
 		panelContact.add(textStreet);
 		textStreet.setColumns(10);
 		
 		textPhone = new JTextField();
-		textPhone.setBounds(115, 74, 289, 20);
+		textPhone.setBounds(115, 74, 214, 20);
 		panelContact.add(textPhone);
 		textPhone.setColumns(10);
 		
-		lblInfo = new JLabel("");
-		lblInfo.setBounds(10, 102, 394, 14);
-		panelContact.add(lblInfo);			
+		lblBase = new JLabel("Base:");
+		lblBase.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblBase.setBounds(10, 139, 90, 14);
+		mainPanel.add(lblBase);
 		
-		lblImageClient = new JLabel("");
-		lblImageClient.setHorizontalAlignment(SwingConstants.CENTER);
-		lblImageClient.setIcon(new ImageIcon(AddClientView.class.getResource("/ar/com/jgt/icons_48x48/businesspeople.png")));
-		lblImageClient.setBounds(255, 14, 169, 114);
-		mainPanel.add(lblImageClient);
+		lblPanel = new JLabel("Panel:");
+		lblPanel.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblPanel.setBounds(10, 164, 90, 14);
+		mainPanel.add(lblPanel);
 		
-		btnSaveClient = new JButton("");
-		btnSaveClient.setIcon(new ImageIcon(AddClientView.class.getResource("/ar/com/jgt/icons_64x64/data_floppy_disk.png")));
-		btnSaveClient.setBounds(307, 300, 113, 91);
-		mainPanel.add(btnSaveClient);
+		cbBase = new JComboBox(ESTACIONES_BASE);
+		cbBase.addActionListener(new AddClientComboController(this));
+		cbBase.setActionCommand("set_combo_box");
+		cbBase.setBounds(110, 136, 239, 20);
+		mainPanel.add(cbBase);
+		
+		cbPanel = new JComboBox(PANELES_LPLANES);			
+		cbPanel.setBounds(110, 161, 239, 20);
+		mainPanel.add(cbPanel);
+		
+		btnNewButton = new JButton("");
+		btnNewButton.setIcon(new ImageIcon(AddClientView.class.getResource("/ar/com/jgt/icons_64x64/data_floppy_disk.png")));
+		btnNewButton.setBounds(260, 316, 89, 73);
+		mainPanel.add(btnNewButton);
+		
+		lblSmsServer = new JLabel("");
+		lblSmsServer.setBounds(10, 375, 240, 14);
+		mainPanel.add(lblSmsServer);
+		
+		lblNewLabel = new JLabel("");		
+		lblNewLabel.setBounds(20, 318, 230, 46);
+		mainPanel.add(lblNewLabel);
 				
 	}
 
@@ -224,19 +255,24 @@ public class AddClientView extends JInternalFrame {
 		this.dateChooser = dateChooser;
 	}
 
-	public JButton getBtnSaveClient() {
-		return btnSaveClient;
+	@SuppressWarnings("rawtypes")
+	public JComboBox getCbBase() {
+		return cbBase;
 	}
 
-	public void setBtnSaveClient(JButton btnSaveClient) {
-		this.btnSaveClient = btnSaveClient;
+	@SuppressWarnings("rawtypes")
+	public void setCbBase(JComboBox cbBase) {
+		this.cbBase = cbBase;
 	}
 
-	public JLabel getLblImageClient() {
-		return lblImageClient;
+	@SuppressWarnings("rawtypes")
+	public JComboBox getCbPanel() {
+		return cbPanel;
 	}
 
-	public void setLblImageClient(JLabel lblImageClient) {
-		this.lblImageClient = lblImageClient;
+	@SuppressWarnings("rawtypes")
+	public void setCbPanel(JComboBox cbPanel) {
+		this.cbPanel = cbPanel;
 	}
+
 }

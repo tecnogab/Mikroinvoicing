@@ -30,16 +30,8 @@ public class AddClientController implements ActionListener {
 	}
 	
 	public void inicialize(){
-		ui_view.getBtnSaveClient().setActionCommand("send_data_post");
-		ui_view.getBtnSaveClient().addActionListener(this);		
-	}
-
-
-	@Override
-	public void actionPerformed(ActionEvent p_actionEvent) {						//Metodo heredado de ActionListener para disparar los eventos que llegan de la vista		
-		if (p_actionEvent.getActionCommand().equals(SEND_DATA_POST)) {	
-			saveClient();
-		}
+		//ui_view.getBtnSaveClient().setActionCommand("send_data_post");
+		//ui_view.getBtnSaveClient().addActionListener(this);		
 	}
 	
 	private void setClient(){
@@ -60,11 +52,11 @@ public class AddClientController implements ActionListener {
 	private void setBtnState(boolean p_flag){
 		boolean flag = p_flag;
 		if (flag) {
-			ui_view.getBtnSaveClient().setEnabled(true);
-			ui_view.getLblImageClient().setIcon(new ImageIcon(AddClientView.class.getResource("/ar/com/jgt/icons_48x48/businesspeople.png")));
+			//ui_view.getBtnSaveClient().setEnabled(true);
+			//ui_view.getLblImageClient().setIcon(new ImageIcon(AddClientView.class.getResource("/ar/com/jgt/icons_48x48/businesspeople.png")));
 		}else{
-			ui_view.getBtnSaveClient().setEnabled(false);
-			ui_view.getLblImageClient().setIcon(new ImageIcon(AddClientView.class.getResource("/ar/com/jgt/icons_128x128/Loading128x128.gif")));
+			//ui_view.getBtnSaveClient().setEnabled(false);
+			//ui_view.getLblImageClient().setIcon(new ImageIcon(AddClientView.class.getResource("/ar/com/jgt/icons_128x128/Loading128x128.gif")));
 		}
 	}
 	
@@ -87,4 +79,13 @@ public class AddClientController implements ActionListener {
 		};
 		worker.execute();
 	}	
+	
+	
+	@Override
+	public void actionPerformed(ActionEvent p_actionEvent) {						//Metodo heredado de ActionListener para disparar los eventos que llegan de la vista		
+		if (p_actionEvent.getActionCommand().equals(SEND_DATA_POST)) {	
+			saveClient();
+		}
+	}
+	
 }
