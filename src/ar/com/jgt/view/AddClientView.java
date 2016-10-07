@@ -72,26 +72,31 @@ public class AddClientView extends JInternalFrame {
 		mainPanel.setLayout(null);
 		
 		lblName = new JLabel("DNI:");
+		lblName.setToolTipText("DNI del cliente");
 		lblName.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblName.setBounds(10, 14, 90, 14);		
 		mainPanel.add(lblName);
 		
 		lblAddrees = new JLabel("Nombre:");
+		lblAddrees.setToolTipText("Nombre");
 		lblAddrees.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblAddrees.setBounds(10, 39, 90, 14);
 		mainPanel.add(lblAddrees);
 		
 		lblLastName = new JLabel("Apellido:");
+		lblLastName.setToolTipText("Apellido");
 		lblLastName.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblLastName.setBounds(10, 64, 90, 14);
 		mainPanel.add(lblLastName);
 		
 		lblFechaDeAlta = new JLabel("Fecha de alta:");
+		lblFechaDeAlta.setToolTipText("Fecha de alta");
 		lblFechaDeAlta.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblFechaDeAlta.setBounds(10, 89, 90, 14);
 		mainPanel.add(lblFechaDeAlta);
 		
 		lblIp = new JLabel("IP:");
+		lblIp.setToolTipText("IP del cliente");
 		lblIp.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblIp.setBounds(10, 114, 90, 14);
 		mainPanel.add(lblIp);
@@ -127,16 +132,19 @@ public class AddClientView extends JInternalFrame {
 		panelContact.setLayout(null);
 		
 		lblNeighborhood = new JLabel("Domicilio/Calle:");
+		lblNeighborhood.setToolTipText("Domicilio/Calle");
 		lblNeighborhood.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNeighborhood.setBounds(10, 27, 95, 14);
 		panelContact.add(lblNeighborhood);
 		
 		lblStreet = new JLabel("Barrio/Edificio/Piso");
+		lblStreet.setToolTipText("Barrio/Edificio/Piso");
 		lblStreet.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblStreet.setBounds(10, 52, 95, 14);
 		panelContact.add(lblStreet);				
 		
 		lblPhone = new JLabel("T\u00E9lefono:");
+		lblPhone.setToolTipText("Tel\u00E9fono");
 		lblPhone.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPhone.setBounds(10, 77, 95, 14);
 		panelContact.add(lblPhone);
@@ -157,11 +165,13 @@ public class AddClientView extends JInternalFrame {
 		textPhone.setColumns(10);
 		
 		lblBase = new JLabel("Base:");
+		lblBase.setToolTipText("Estaci\u00F3n base");
 		lblBase.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblBase.setBounds(10, 139, 90, 14);
 		mainPanel.add(lblBase);
 		
 		lblPanel = new JLabel("Panel:");
+		lblPanel.setToolTipText("Panel al que se conecta el cliente");
 		lblPanel.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPanel.setBounds(10, 164, 90, 14);
 		mainPanel.add(lblPanel);
