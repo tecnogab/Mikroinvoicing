@@ -46,9 +46,18 @@ public class RecibosTemporales extends JInternalFrame {
 		getContentPane().add(lblImporte);
 		
 		JComboBox<Float> comboBox = new JComboBox<Float>();		
-		comboBox.addItem(250.0f);
-		comboBox.addItem(265.0f);
-		comboBox.addItem(280.0f);
+		comboBox.addItem(300.0f);
+		comboBox.addItem(318.0f);
+		comboBox.addItem(336.0f);
+		comboBox.addItem(400.0f);
+		comboBox.addItem(424.0f);
+		comboBox.addItem(448.0f);
+		
+		comboBox.addItem(350.0f);
+		comboBox.addItem(371.0f);
+		comboBox.addItem(392.0f);
+		
+	
 		comboBox.setBounds(155, 39, 92, 20);
 		getContentPane().add(comboBox);
 		
@@ -58,10 +67,10 @@ public class RecibosTemporales extends JInternalFrame {
 				try {
 					File l_sourceimage = new File(this.getClass().getResource("/ar/com/jgt/reportes/qr_code.jpg").getFile());
 					Image l_qrCode = ImageIO.read(l_sourceimage);
-					int l_nRecibo = 16878;
+					int l_nRecibo = 18477;
 					Integer l_numRecibo = l_nRecibo;
 					String l_nameCli = textField.getText();					
-					String l_concepto = "ACCESO A INTERNET MES DE OCTUBRE DE 2016";
+					String l_concepto = "ACCESO A INTERNET DICIEMBRE 2016";
 					Float l_importe = Float.parseFloat(comboBox.getSelectedItem().toString());
 					
 					final SwingWorker<Object, Object> worker = new SwingWorker<Object, Object>(){
@@ -86,6 +95,7 @@ public class RecibosTemporales extends JInternalFrame {
 				} catch (IOException p_IOException) {
 					// TODO Auto-generated catch block
 					p_IOException.printStackTrace();
+
 				}
 			}
 		});
